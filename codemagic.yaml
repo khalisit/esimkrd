@@ -1,6 +1,6 @@
 workflows:
   ios-workflow:
-    name: BARAV QUIZ iOS
+    name: Esim KRD
     max_build_duration: 120
     instance_type: mac_mini_m2
 
