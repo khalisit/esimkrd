@@ -1,0 +1,372 @@
+{
+  "@@locale": "en",
+  "appTitle": "eSIM KRD",
+  "heroTitlePart1": "Travel ",
+  "heroTitleHighlight": "connected",
+  "heroTitlePart2": ", anywhere",
+  "heroSubtitle": "eSIM packages for 200+ countries. Instant delivery, no physical SIM.",
+  "destinationsCount": "{count}+ destinations",
+  "@destinationsCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "getStarted": "Get started",
+  "browsePlans": "Browse plans",
+  "searchCountries": "Search countries...",
+  "kurdistanRegion": "Kurdistan & Region",
+  "kurdistanRegionSubtitle": "Plans for Iraq, Turkey, Europe & more",
+  "popularDestinations": "Popular destinations",
+  "allCountries": "All countries",
+  "noResults": "No results found",
+  "loadingCountries": "Loading countries...",
+  "loadingPackages": "Loading packages...",
+  "loading": "Loading...",
+  "apiError": "Cannot reach API",
+  "retry": "Try again",
+  "loginRequired": "Please sign in first",
+  "orderCreated": "Order created successfully",
+  "openingPayment": "Opening payment page...",
+  "paymentUrlMissing": "Payment link was not returned",
+  "paymentTitle": "Payment",
+  "paymentComplete": "Payment completed — your eSIM will appear shortly",
+  "checkoutTitle": "Checkout",
+  "orderSummary": "Order summary",
+  "total": "Total",
+  "subtotal": "Subtotal",
+  "totalIqd": "Total (IQD)",
+  "orderNumber": "Order #{id}",
+  "@orderNumber": {
+    "placeholders": {
+      "id": { "type": "int" }
+    }
+  },
+  "paySecurely": "Pay securely",
+  "securePayment": "Secure payment",
+  "poweredByWayl": "FIB · ZainCash · Visa",
+  "checkoutDisclaimer": "Your eSIM will be delivered instantly after payment is confirmed.",
+  "loadingPayment": "Loading secure checkout...",
+  "cancelPayment": "Cancel payment?",
+  "cancelPaymentConfirm": "Your order is saved. You can complete payment later from My eSIMs.",
+  "stay": "Continue payment",
+  "leave": "Leave",
+  "confirmingPayment": "Confirming payment",
+  "confirmingPaymentSubtitle": "Please wait while we verify your transaction...",
+  "paymentSuccess": "Payment successful!",
+  "paymentSuccessSubtitle": "Your eSIM is being prepared and will appear in My eSIMs shortly.",
+  "paymentPending": "Payment processing",
+  "paymentPendingSubtitle": "We're still waiting for confirmation. Check My eSIMs in a few minutes.",
+  "paymentFailed": "Could not confirm payment",
+  "paymentFailedSubtitle": "If you were charged, contact support with your order number.",
+  "viewMyEsims": "View my eSIMs",
+  "continueShopping": "Continue shopping",
+  "paymentStepsTitle": "How to pay with Visa / card",
+  "paymentStep1": "Enter WhatsApp number and confirm the code",
+  "paymentStep2": "Tap the «Cards» tab (Visa / Mastercard)",
+  "paymentStep3": "Enter card number, expiry and CVV",
+  "paymentStep4": "Your eSIM arrives instantly after payment",
+  "paymentWaylNote": "Wayl requires WhatsApp login first — then the card form appears.",
+  "continueToPay": "Continue to payment",
+  "paymentSheetHint": "FIB · ZainCash · Visa",
+  "fibPaymentTitle": "Pay with FIB",
+  "fibPaymentSubtitle": "Open FIB, send the amount, then return here.",
+  "fibAccountLabel": "FIB account",
+  "fibPhoneLabel": "FIB phone number",
+  "fibIbanLabel": "IBAN",
+  "fibReferenceLabel": "Reference (put in note)",
+  "fibPaymentNote": "Send the exact IQD amount to the FIB account below. You must include the reference in the transfer note.",
+  "fibOpenApp": "Open FIB app",
+  "fibOpenAppManually": "Open the FIB app on your phone, then send the payment.",
+  "fibMarkPaid": "I have paid",
+  "fibStepsTitle": "How to pay with FIB",
+  "fibStep1": "Open the FIB app on your phone",
+  "fibStep2": "Send the exact IQD amount shown",
+  "fibStep3": "Put the reference code in the transfer note",
+  "fibStep4": "Tap «I have paid» — we verify and deliver your eSIM",
+  "fibSheetHint": "Manual FIB transfer · verified within a few hours",
+  "fibManualPendingTitle": "Payment submitted",
+  "fibManualPendingSubtitle": "We received your confirmation. Once we verify the FIB transfer, your eSIM will appear in My eSIMs.",
+  "paymentMethodTitle": "Payment method",
+  "paymentMethodSubtitle": "Secure checkout with Visa, Mastercard & Apple Pay",
+  "paymentMethodFib": "Pay with FIB",
+  "paymentMethodFibDesc": "Bank transfer in Iraqi Dinar (IQD)",
+  "paymentMethodCard": "Pay by card",
+  "paymentMethodCardDesc": "Visa, Mastercard & Apple Pay",
+  "paymentBadgePopular": "Popular",
+  "paymentBadgeInstant": "Instant delivery",
+  "paymentBadgeLocal": "Iraq",
+  "payAmount": "Pay {amount}",
+  "@payAmount": {
+    "placeholders": {
+      "amount": { "type": "String" }
+    }
+  },
+  "securedByStripe": "Secured by Stripe",
+  "copiedToClipboard": "{label} copied",
+  "@copiedToClipboard": {
+    "placeholders": {
+      "label": { "type": "String" }
+    }
+  },
+  "fibPayTitle": "FIB payment",
+  "fibScanTitle": "Scan to pay with FIB",
+  "fibScanSubtitle": "Open the FIB app and scan this QR code",
+  "fibReadableCode": "Payment code",
+  "fibOpenAppTitle": "Or open the FIB app directly",
+  "fibPersonalApp": "Open FIB Personal",
+  "fibBusinessApp": "Open FIB Business",
+  "fibWaitingPayment": "Waiting for your payment… this updates automatically.",
+  "fibCheckStatus": "I have paid — check now",
+  "fibAppNotInstalled": "Couldn't open the FIB app. Please scan the QR code instead.",
+  "fibTransferDetails": "Transfer details",
+  "cardCheckoutSubtitle": "You will complete payment on Stripe's secure checkout page",
+  "cardPaymentTitle": "Secure card payment",
+  "cardPaymentNote": "Complete payment on Stripe's secure checkout. Your eSIM is delivered automatically.",
+  "cardStepsTitle": "How to pay by card",
+  "cardStep1": "Enter your card details on the secure page",
+  "cardStep2": "Complete payment — powered by Stripe",
+  "cardStep3": "Your eSIM arrives instantly in My eSIMs",
+  "cardSheetHint": "256-bit encryption · Stripe · Visa · Mastercard",
+  "errorGeneric": "Error: {message}",
+  "@errorGeneric": {
+    "placeholders": {
+      "message": { "type": "String" }
+    }
+  },
+  "noPackages": "No packages available",
+  "plansAvailable": "{count} plans available",
+  "@plansAvailable": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "countryHeroDesc": "Choose your data plan. Instant eSIM via QR code — no store visit needed.",
+  "daysCount": "{count} days",
+  "@daysCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "buy": "Buy",
+  "details": "Details",
+  "less": "Less",
+  "packageDetails": "Instant eSIM delivery · QR code · No physical SIM needed",
+  "unlimited": "Unlimited",
+  "filterAll": "All",
+  "filterLimited": "Limited",
+  "welcomeBack": "Welcome back",
+  "createAccount": "Create account",
+  "signInTo": "Sign in to ",
+  "join": "Join ",
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "register": "Register",
+  "login": "Sign in",
+  "continueWithGoogle": "Continue with Google",
+  "continueWithApple": "Continue with Apple",
+  "signInWithAccount": "Sign in with account",
+  "emailPasswordDesc": "Email and password",
+  "createAccountHint": "Enter your name, email, and password",
+  "confirmPassword": "Confirm password",
+  "fieldRequired": "This field is required",
+  "invalidEmail": "Enter a valid email",
+  "passwordMinLength": "Password must be at least 8 characters",
+  "passwordMismatch": "Passwords do not match",
+  "googleSignInDesc": "One tap · Secure",
+  "signInDisclaimer": "Your sign-in is encrypted and secure",
+  "signInWithSocial": "Or continue with Google or Apple",
+  "haveAccount": "Already have an account? Sign in",
+  "noAccount": "Create a new account",
+  "loginSuccess": "Signed in successfully",
+  "canBuyNow": "You can now purchase eSIM",
+  "logout": "Sign out",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Delete your account?",
+  "deleteAccountMessage": "This will permanently delete your account, orders, and eSIM data. This action cannot be undone.",
+  "deleteAccountConfirm": "Delete",
+  "cancel": "Cancel",
+  "accountDeleted": "Your account has been deleted",
+  "splashTagline": "Travel connected, anywhere",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "kurdish": "Kurdish",
+  "navStore": "Store",
+  "navMyEsims": "My eSIMs",
+  "navProfile": "Profile",
+  "myEsimsTitle": "My eSIMs",
+  "myEsimsEmpty": "You haven't purchased any eSIM yet",
+  "myEsimsLogin": "Sign in to view your eSIMs",
+  "myEsimsGoStore": "Browse store",
+  "profileTitle": "Profile",
+  "profileGuest": "Guest",
+  "profileGuestHint": "Sign in to manage your account and eSIMs",
+  "statusActive": "Active",
+  "statusExpired": "Expired",
+  "statusDepleted": "Depleted",
+  "dataUsage": "Data: {used} / {total}",
+  "@dataUsage": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "expiresOn": "Expires: {date}",
+  "@expiresOn": {
+    "placeholders": {
+      "date": { "type": "String" }
+    }
+  },
+  "iccid": "ICCID: {value}",
+  "@iccid": {
+    "placeholders": {
+      "value": { "type": "String" }
+    }
+  },
+  "esimTapToInstall": "Tap for usage & install",
+  "esimDetailTitle": "eSIM details",
+  "esimRefreshUsage": "Refresh usage",
+  "esimUsageTitle": "Data usage",
+  "esimUsageUnavailable": "Usage will appear after the eSIM becomes active on the network.",
+  "esimUsageSummary": "{used} used of {total}",
+  "@esimUsageSummary": {
+    "placeholders": {
+      "used": { "type": "String" },
+      "total": { "type": "String" }
+    }
+  },
+  "esimUsed": "Used",
+  "esimRemaining": "Left",
+  "esimTotal": "Total",
+  "esimDataLeft": "left",
+  "esimUnlimited": "Unlimited",
+  "esimUnlimitedHint": "This plan has unlimited data.",
+  "esimStatusNotActive": "Not activated",
+  "esimVoiceLeft": "Voice: {remaining} / {total} min",
+  "@esimVoiceLeft": {
+    "placeholders": {
+      "remaining": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "esimSmsLeft": "SMS: {remaining} / {total}",
+  "@esimSmsLeft": {
+    "placeholders": {
+      "remaining": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "esimTabIphone": "iPhone",
+  "esimTabAndroid": "Android",
+  "esimInstallTitle": "Install eSIM",
+  "esimInstallHowTitle": "Install your eSIM",
+  "esimInstallHowSubtitle": "Choose your phone type. One-tap install on iPhone, or scan the QR on Android.",
+  "esimScanQr": "Scan this QR code",
+  "esimInstallOnIphone": "Install on iPhone",
+  "esimInstallOnIphoneHint": "Best on iOS 17.4+. Opens Apple eSIM setup on this iPhone.",
+  "esimManualTitle": "Manual codes",
+  "esimManualSubtitle": "Tap to copy. Use if QR or one-tap install is unavailable.",
+  "esimSmdpAddress": "SM-DP+ Address",
+  "esimActivationCode": "Activation Code",
+  "esimConfirmationCode": "Confirmation Code",
+  "esimConfirmationOptional": "Confirmation Code: leave empty unless your carrier provided one.",
+  "esimStepsIphoneTitle": "iPhone steps",
+  "esimStepIphone1": "Settings → Cellular → Add eSIM",
+  "esimStepIphone2": "Use QR Code, or Enter Details Manually",
+  "esimStepIphone3": "Paste SM-DP+ Address and Activation Code",
+  "esimStepIphone4": "Enable Data Roaming for this eSIM when you arrive",
+  "esimStepsAndroidTitle": "Android steps",
+  "esimStepAndroid1": "Settings → Network & internet → SIMs",
+  "esimStepAndroid2": "Download a SIM / Add eSIM",
+  "esimStepAndroid3": "Scan the QR code above",
+  "esimStepAndroid4": "Enable Mobile data + Roaming for this eSIM",
+  "esimApnHint": "If needed, set APN to: {apn}",
+  "@esimApnHint": {
+    "placeholders": {
+      "apn": { "type": "String" }
+    }
+  },
+  "esimRoamingHint": "After install: turn on Data Roaming and select this eSIM for Mobile Data.",
+  "esimOpenShareLink": "Open install page",
+  "esimShareCode": "Access code: {code}",
+  "@esimShareCode": {
+    "placeholders": {
+      "code": { "type": "String" }
+    }
+  },
+  "esimOpenLinkFailed": "Could not open the link",
+  "orderHistoryTitle": "Order history",
+  "orderHistoryEmpty": "No orders yet",
+  "orderStatusPending": "Payment pending",
+  "orderStatusPaid": "Processing payment",
+  "orderStatusProcessing": "Preparing eSIM",
+  "orderStatusCompleted": "Completed",
+  "orderStatusFailed": "Failed",
+  "completePayment": "Complete payment",
+  "orderAwaitingVerification": "Awaiting verification",
+  "termsTitle": "Terms of service",
+  "privacyTitle": "Privacy policy",
+  "supportTitle": "Help & support",
+  "termsOfService": "Terms of service",
+  "privacyPolicy": "Privacy policy",
+  "helpSupport": "Help & support",
+  "contactEmail": "Email us",
+  "contactWhatsapp": "WhatsApp",
+  "supportContactTitle": "Contact us",
+  "supportFaqTitle": "Common questions",
+  "onboardingSkip": "Skip",
+  "onboardingNext": "Next",
+  "onboardingGetStarted": "Get started",
+  "onboardingSlide1Title": "Travel connected, anywhere",
+  "onboardingSlide1Body": "Browse eSIM data plans for 200+ countries. Instant digital delivery — no physical SIM card needed.",
+  "onboardingSlide2Title": "Install in minutes",
+  "onboardingSlide2Body": "Scan a QR code on Android or use one-tap install on iPhone. Your plan activates when you connect abroad.",
+  "onboardingSlide3Title": "Pay securely",
+  "onboardingSlide3Body": "Pay with FIB in Iraqi Dinar or by card with Stripe. Your eSIM appears in My eSIMs after payment.",
+  "offlineTitle": "No internet connection",
+  "offlineMessage": "Check your connection and try again.",
+  "sessionExpired": "Your session expired. Please sign in again.",
+  "esimLowDataTitle": "Low data remaining",
+  "esimLowDataMessage": "Only {percent}% of your data is left. Consider topping up before you run out.",
+  "@esimLowDataMessage": {
+    "placeholders": {
+      "percent": { "type": "int" }
+    }
+  },
+  "esimExpirySoonTitle": "Plan expiring soon",
+  "esimExpirySoonMessage": "Your plan expires in {days} days. Renew before you travel again.",
+  "@esimExpirySoonMessage": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "shareReceipt": "Share receipt",
+  "receiptTitle": "eSIM KRD Receipt",
+  "promoCodeLabel": "Promo code",
+  "promoCodeHint": "Enter code",
+  "promoApply": "Apply",
+  "promoDiscount": "Discount",
+  "topUpTitle": "Add more data",
+  "topUpSubtitle": "Renew or top up this eSIM with a new package.",
+  "topUpAction": "Top up / renew",
+  "referralTitle": "Invite friends",
+  "referralSubtitle": "Share your code. Friends get a great deal and you grow the community.",
+  "referralShare": "Share invite link",
+  "referralShareMessage": "Get travel eSIM with eSIM KRD! Use my code: {code}",
+  "@referralShareMessage": {
+    "placeholders": {
+      "code": { "type": "String" }
+    }
+  },
+  "referralCount": "{count} friends joined",
+  "@referralCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "currencyDisplay": "Currency display",
+  "currencyBoth": "USD + IQD",
+  "currencyUsd": "USD only",
+  "currencyIqd": "IQD only"
+}

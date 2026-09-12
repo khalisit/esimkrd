@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "302196387275",
+    "project_id": "esim-krd",
+    "storage_bucket": "esim-krd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302196387275:android:fc8ac790572085d909da4e",
+        "android_client_info": {
+          "package_name": "com.karoxghafoor.esimkrd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302196387275-4sg9ml75gfg4dbr4fr3sk4ie00mlefgo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karoxghafoor.esimkrd",
+            "certificate_hash": "d0d3c31b9f699909db5940e1c7c20049751965ba"
+          }
+        },
+        {
+          "client_id": "302196387275-d91sonhdlb26aa58ac8hvbar03fmt88d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karoxghafoor.esimkrd",
+            "certificate_hash": "b500bcd86cbd915be0ee73aabcfbcabdaa8e8147"
+          }
+        },
+        {
+          "client_id": "302196387275-o7kvu9o63m4017eavtqha5uffbuco9kv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karoxghafoor.esimkrd",
+            "certificate_hash": "6d3a9bec01360bf0d1fdb904f6506d936e0e6716"
+          }
+        },
+        {
+          "client_id": "302196387275-05a341ht581he101ntdtgq443ambldpl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-bX0pji2C73XtuT-C_xQUGfgq1Q77Ghc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302196387275-05a341ht581he101ntdtgq443ambldpl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "302196387275-2mu11jbagofi8pajsali34dm1i894gbc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.karoxghafoor.esimkrd",
+                "app_store_id": "6811390353"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
