@@ -75,7 +75,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>Esim KRD</string>
+				<string>esimkrd</string>
 			</array>
 		</dict>
 		<dict>
