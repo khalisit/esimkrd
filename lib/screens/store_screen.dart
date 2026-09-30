@@ -17,6 +17,7 @@ import '../widgets/language_selector.dart';
 import '../widgets/animated_bottom_nav.dart';
 import '../widgets/error_state_view.dart';
 import '../widgets/skeleton_loading.dart';
+import '../widgets/primary_button.dart';
 import '../widgets/search_field.dart';
 import 'country_packages_screen.dart';
 
@@ -38,6 +39,7 @@ class _StoreScreenState extends State<StoreScreen> {
   late Future<List<Country>> _countriesFuture;
   final _searchController = TextEditingController();
   String _query = '';
+  String? _popularFilter;
 
   @override
   void initState() {
@@ -54,9 +56,7 @@ class _StoreScreenState extends State<StoreScreen> {
   Future<List<Country>> _loadCountries() async {
     final response = await widget.api.get('/packages/countries');
     final list = response['data'] as List<dynamic>;
-    return list
-        .map((e) => Country.fromJson(e as Map<String, dynamic>))
-        .toList();
+    return list.map((e) => Country.fromJson(e as Map<String, dynamic>)).toList();
   }
 
   List<Country> _pickByCodes(List<Country> all, List<String> codes) {
@@ -80,14 +80,14 @@ class _StoreScreenState extends State<StoreScreen> {
   List<Country> _filter(List<Country> countries) {
     var result = countries.where((c) => c.code.isNotEmpty).toList();
 
+    if (_popularFilter != null) {
+      result = result.where((c) => c.code == _popularFilter).toList();
+    }
+
     if (_query.isNotEmpty) {
       final q = _query.toLowerCase();
       result = result.where((c) {
-        final localized = CountryNames.localized(
-          context,
-          c.code,
-          c.name,
-        ).toLowerCase();
+        final localized = CountryNames.localized(context, c.code, c.name).toLowerCase();
         return c.name.toLowerCase().contains(q) ||
             c.code.toLowerCase().contains(q) ||
             localized.contains(q);
@@ -110,130 +110,93 @@ class _StoreScreenState extends State<StoreScreen> {
     final l10n = AppLocalizations.of(context)!;
 
     return SafeArea(
-      child: RefreshIndicator(
-        color: AppColors.primary,
-        onRefresh: () async {
-          final future = _loadCountries();
-          setState(() {
-            _countriesFuture = future;
-          });
-          try {
-            await future;
-          } catch (_) {}
-        },
-        child: FutureBuilder<List<Country>>(
-          future: _countriesFuture,
-          builder: (context, snapshot) {
-            final isLoading =
-                snapshot.connectionState == ConnectionState.waiting;
-            final hasError = snapshot.hasError;
-            final allCountries = snapshot.data ?? [];
-            final countries = _filter(allCountries);
-            final regionCountries = _pickByCodes(
-              allCountries,
-              RegionalCountries.kurdishRegionCodes,
-            );
-            final popularCountries = _pickByCodes(
-              allCountries,
-              RegionalCountries.popularCodes,
-            );
+      child: FutureBuilder<List<Country>>(
+            future: _countriesFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CountryListSkeleton();
+              }
 
-            return CustomScrollView(
-              physics: const BouncingScrollPhysics(
-                parent: AlwaysScrollableScrollPhysics(),
-              ),
-              slivers: [
-                SliverToBoxAdapter(
-                  child: _buildHeader(context, allCountries, l10n),
+              if (snapshot.hasError) {
+                return ErrorStateView(
+                  title: isNetworkError(snapshot.error!)
+                      ? l10n.offlineTitle
+                      : l10n.apiError,
+                  message: formatApiError(l10n, snapshot.error!),
+                  retryLabel: l10n.retry,
+                  onRetry: () => setState(() => _countriesFuture = _loadCountries()),
+                  icon: isNetworkError(snapshot.error!)
+                      ? Icons.wifi_off_rounded
+                      : Icons.cloud_off_rounded,
+                );
+              }
+
+              final allCountries = snapshot.data ?? [];
+              final countries = _filter(allCountries);
+              final regionCountries = _pickByCodes(allCountries, RegionalCountries.kurdishRegionCodes);
+              final popularCountries = _pickByCodes(allCountries, RegionalCountries.popularCodes);
+
+              return CustomScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
                 ),
-                SliverToBoxAdapter(child: _buildSearch(l10n)),
-                if (_query.isEmpty && (isLoading || regionCountries.isNotEmpty))
+                slivers: [
+                  SliverToBoxAdapter(child: _buildHeader(context, allCountries, l10n)),
+                  SliverToBoxAdapter(child: _buildSearch(l10n)),
+                  if (_query.isEmpty && _popularFilter == null)
+                    SliverToBoxAdapter(
+                      child: KurdishRegionSection(
+                        countries: regionCountries,
+                        title: l10n.kurdistanRegion,
+                        subtitle: l10n.kurdistanRegionSubtitle,
+                        onCountryTap: _openCountry,
+                      ),
+                    ),
+                  if (_query.isEmpty && _popularFilter == null)
+                    SliverToBoxAdapter(child: _buildPopularChips(popularCountries, l10n)),
                   SliverToBoxAdapter(
-                    child: KurdishRegionSection(
-                      countries: regionCountries,
-                      title: l10n.kurdistanRegion,
-                      subtitle: l10n.kurdistanRegionSubtitle,
-                      onCountryTap: _openCountry,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                      child: Text(l10n.allCountries, style: Theme.of(context).textTheme.titleMedium),
                     ),
                   ),
-                if (_query.isEmpty &&
-                    (isLoading || popularCountries.isNotEmpty))
-                  SliverToBoxAdapter(
-                    child: _buildPopularChips(popularCountries, l10n),
-                  ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                    child: Text(
-                      l10n.allCountries,
-                      style: Theme.of(context).textTheme.titleMedium,
+                  if (countries.isEmpty)
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Center(child: Text(l10n.noResults)),
+                    )
+                  else
+                    SliverPadding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+                      sliver: SliverList.separated(
+                        itemCount: countries.length,
+                        separatorBuilder: (_, _) => const SizedBox(height: 10),
+                        itemBuilder: (context, index) {
+                          final country = countries[index];
+                          return FadeSlideIn(
+                            delay: Duration(milliseconds: 40 * (index.clamp(0, 12))),
+                            child: CountryTile(
+                              country: country,
+                              index: index,
+                              onTap: () => _openCountry(country),
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ),
-                if (isLoading)
-                  const SliverToBoxAdapter(
-                    child: CountryListSkeleton(itemCount: 8),
-                  )
-                else if (hasError)
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: ErrorStateView(
-                      title: isNetworkError(snapshot.error!)
-                          ? l10n.offlineTitle
-                          : l10n.apiError,
-                      message: formatApiError(l10n, snapshot.error!),
-                      retryLabel: l10n.retry,
-                      onRetry: () =>
-                          setState(() => _countriesFuture = _loadCountries()),
-                      icon: isNetworkError(snapshot.error!)
-                          ? Icons.wifi_off_rounded
-                          : Icons.cloud_off_rounded,
-                    ),
-                  )
-                else if (countries.isEmpty)
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Center(child: Text(l10n.noResults)),
-                  )
-                else
                   SliverPadding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-                    sliver: SliverList.separated(
-                      itemCount: countries.length,
-                      separatorBuilder: (_, _) => const SizedBox(height: 10),
-                      itemBuilder: (context, index) {
-                        final country = countries[index];
-                        return FadeSlideIn(
-                          delay: Duration(
-                            milliseconds: 40 * (index.clamp(0, 12)),
-                          ),
-                          child: CountryTile(
-                            country: country,
-                            index: index,
-                            onTap: () => _openCountry(country),
-                          ),
-                        );
-                      },
+                    padding: EdgeInsets.only(
+                      bottom: NavIslandLayout.bottomClearance(context),
                     ),
                   ),
-                SliverPadding(
-                  padding: EdgeInsets.only(
-                    bottom: NavIslandLayout.bottomClearance(context),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
+                ],
+              );
+            },
+          ),
     );
   }
 
-  Widget _buildHeader(
-    BuildContext context,
-    List<Country> allCountries,
-    AppLocalizations l10n,
-  ) {
+  Widget _buildHeader(BuildContext context, List<Country> allCountries, AppLocalizations l10n) {
     final totalCountries = allCountries.length;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
@@ -245,10 +208,7 @@ class _StoreScreenState extends State<StoreScreen> {
               children: [
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: AppColors.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(999),
@@ -268,8 +228,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         Flexible(
                           child: Text(
                             l10n.destinationsCount(totalCountries),
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   color: AppColors.primary,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12,
@@ -309,9 +268,19 @@ class _StoreScreenState extends State<StoreScreen> {
           const SizedBox(height: 10),
           FadeSlideIn(
             delay: const Duration(milliseconds: 140),
-            child: Text(
-              l10n.heroSubtitle,
-              style: Theme.of(context).textTheme.bodyLarge,
+            child: Text(l10n.heroSubtitle, style: Theme.of(context).textTheme.bodyLarge),
+          ),
+          const SizedBox(height: 20),
+          FadeSlideIn(
+            delay: const Duration(milliseconds: 200),
+            child: PrimaryButton(
+              label: widget.api.isLoggedIn ? l10n.browsePlans : l10n.getStarted,
+              icon: Icons.rocket_launch_rounded,
+              onPressed: () {
+                final region = _pickByCodes(allCountries, RegionalCountries.kurdishRegionCodes);
+                final target = region.isNotEmpty ? region.first : (allCountries.isNotEmpty ? allCountries.first : null);
+                if (target != null) _openCountry(target);
+              },
             ),
           ),
         ],
@@ -329,6 +298,7 @@ class _StoreScreenState extends State<StoreScreen> {
           hint: l10n.searchCountries,
           onChanged: (value) => setState(() {
             _query = value.trim();
+            _popularFilter = null;
           }),
         ),
       ),
@@ -337,44 +307,42 @@ class _StoreScreenState extends State<StoreScreen> {
 
   Widget _buildPopularChips(List<Country> popular, AppLocalizations l10n) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8, bottom: 12),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
       child: FadeSlideIn(
         delay: const Duration(milliseconds: 320),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                l10n.popularDestinations,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
+            Text(l10n.popularDestinations, style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 10),
             SizedBox(
               height: 44,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
                 itemCount: popular.length,
                 separatorBuilder: (_, _) => const SizedBox(width: 8),
                 itemBuilder: (context, index) {
                   final country = popular[index];
-                  final name = CountryNames.localized(
-                    context,
-                    country.code,
-                    country.name,
-                  );
-                  return ActionChip(
+                  final selected = _popularFilter == country.code;
+                  final name = CountryNames.localized(context, country.code, country.name);
+                  return FilterChip(
                     avatar: CountryFlagBadge(countryCode: country.code),
                     label: Text(name),
-                    onPressed: () => _openCountry(country),
-                    backgroundColor: Colors.transparent,
-                    labelStyle: const TextStyle(
-                      color: AppColors.textSecondary,
+                    selected: selected,
+                    onSelected: (_) => setState(() {
+                      _popularFilter = selected ? null : country.code;
+                      _searchController.clear();
+                      _query = '';
+                    }),
+                    selectedColor: AppColors.primary.withValues(alpha: 0.15),
+                    checkmarkColor: AppColors.primary,
+                    labelStyle: TextStyle(
+                      color: selected ? AppColors.primary : AppColors.textSecondary,
                       fontWeight: FontWeight.w600,
                     ),
-                    side: const BorderSide(color: AppColors.border),
+                    side: BorderSide(
+                      color: selected ? AppColors.primary.withValues(alpha: 0.4) : AppColors.border,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(999),
                     ),

@@ -110,8 +110,6 @@ class CountryListSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerScope(
       child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
         itemCount: itemCount,
         separatorBuilder: (_, _) => const SizedBox(height: 10),
@@ -154,8 +152,6 @@ class PackageListSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerScope(
       child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.all(20),
         itemCount: itemCount,
         separatorBuilder: (_, _) => const SizedBox(height: 12),
@@ -197,8 +193,6 @@ class EsimListSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerScope(
       child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
         itemCount: itemCount,
         separatorBuilder: (_, _) => const SizedBox(height: 12),
@@ -241,8 +235,6 @@ class OrderListSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ShimmerScope(
       child: ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
         itemCount: itemCount,
         separatorBuilder: (_, _) => const SizedBox(height: 12),

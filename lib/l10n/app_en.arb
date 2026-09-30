@@ -92,6 +92,8 @@
   "paymentMethodFibDesc": "Bank transfer in Iraqi Dinar (IQD)",
   "paymentMethodCard": "Pay by card",
   "paymentMethodCardDesc": "Visa, Mastercard & Apple Pay",
+  "paymentMethodRasedi": "Pay securely",
+  "paymentMethodRasediDesc": "FIB, ZainCash, FastPay, Nass, AsiaPay & card",
   "paymentBadgePopular": "Popular",
   "paymentBadgeInstant": "Instant delivery",
   "paymentBadgeLocal": "Iraq",
@@ -101,7 +103,7 @@
       "amount": { "type": "String" }
     }
   },
-  "securedByStripe": "Secured by Stripe",
+  "securedByStripe": "Secured payment",
   "copiedToClipboard": "{label} copied",
   "@copiedToClipboard": {
     "placeholders": {

@@ -269,6 +269,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get paymentMethodCardDesc => 'Visa و Mastercard و Apple Pay';
 
   @override
+  String get paymentMethodRasedi => 'دفع آمن';
+
+  @override
+  String get paymentMethodRasediDesc =>
+      'FIB و ZainCash و FastPay و Nass و AsiaPay والبطاقة';
+
+  @override
   String get paymentBadgePopular => 'الأكثر استخداماً';
 
   @override
@@ -283,7 +290,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get securedByStripe => 'محمي بواسطة Stripe';
+  String get securedByStripe => 'دفع آمن';
 
   @override
   String copiedToClipboard(String label) {

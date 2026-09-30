@@ -11,7 +11,7 @@ String paymentLanguageForLocale(String languageCode) {
   return languageCode == 'en' ? 'en' : 'ar';
 }
 
-/// Routes a created order to the right payment experience (FIB QR or card WebView).
+/// Routes a created order to in-app Rasedi checkout (WebView).
 Future<void> startCheckoutFlow({
   required BuildContext context,
   required ApiClient api,
@@ -39,7 +39,8 @@ Future<void> startCheckoutFromOrder({
   required ApiClient api,
   required CheckoutOrder checkout,
 }) async {
-  if (checkout.isFib) {
+  // Legacy FIB QR only if somehow still returned (old payments).
+  if (checkout.isFib && !checkout.isRasedi && checkout.fibQrCode != null) {
     await Navigator.of(context).push(
       AppPageRoute(page: FibQrScreen(api: api, checkout: checkout)),
     );
@@ -59,7 +60,7 @@ Future<void> startCheckoutFromOrder({
 
   if (checkout.paymentUrl.isEmpty) return;
 
-  final completed = await Navigator.of(context).push<bool>(
+  final paid = await Navigator.of(context).push<bool>(
     AppPageRoute(
       page: PaymentWebViewScreen(
         paymentUrl: checkout.paymentUrl,
@@ -70,12 +71,14 @@ Future<void> startCheckoutFromOrder({
 
   if (!context.mounted) return;
 
+  // Always show result screen so webhook-confirmed orders are polled,
+  // even if the user closed the WebView after paying in a wallet app.
   await Navigator.of(context).push(
     AppPageRoute(
       page: PaymentResultScreen(
         api: api,
         orderId: checkout.orderId,
-        paymentReturned: completed == true,
+        paymentReturned: paid == true,
       ),
     ),
   );

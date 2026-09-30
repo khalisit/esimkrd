@@ -259,7 +259,7 @@ class _OrderCard extends StatelessWidget {
           Row(
             children: [
               CountryFlagAvatar(
-                countryCode: order.countryCode.toUpperCase() == 'IQ' ? 'KRD' : order.countryCode,
+                countryCode: order.countryCode,
                 countryName: order.countryName,
                 size: 44,
                 borderRadius: 12,

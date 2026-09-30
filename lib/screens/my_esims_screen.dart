@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../models/user_esim.dart';
 import '../services/api_client.dart';
-import '../services/notification_service.dart';
 import '../theme/app_colors.dart';
 import '../utils/api_errors.dart';
 import '../utils/page_transitions.dart';
 import '../widgets/app_card.dart';
 import '../widgets/animated_bottom_nav.dart';
 import '../widgets/error_state_view.dart';
-import '../widgets/country_flag_avatar.dart';
 import '../widgets/fade_slide_in.dart';
 import '../widgets/skeleton_loading.dart';
 import '../widgets/primary_button.dart';
@@ -55,32 +53,12 @@ class MyEsimsScreenState extends State<MyEsimsScreen> {
     try {
       final response = await widget.api.get('/my-esims', auth: true);
       final list = response['data'] as List<dynamic>;
-      final esims = list.map((e) => UserEsim.fromJson(e as Map<String, dynamic>)).toList();
-      
-      _checkNotifications(esims);
-
-      return esims;
+      return list.map((e) => UserEsim.fromJson(e as Map<String, dynamic>)).toList();
     } on ApiException catch (e) {
       if (e.statusCode == 401) {
         widget.onSessionExpired?.call();
       }
       rethrow;
-    }
-  }
-
-  void _checkNotifications(List<UserEsim> esims) {
-    for (final esim in esims) {
-      if (esim.status != 'active') continue;
-
-      if (esim.usage != null && !esim.usage!.isUnlimited) {
-        if (esim.usage!.remainingMb > 0 && esim.usage!.remainingMb <= 500) {
-          NotificationService().showLowDataNotification(esim.packageName, esim.iccid);
-        }
-      }
-
-      if (esim.expiresAt != null) {
-        NotificationService().scheduleExpiryNotification(esim.packageName, esim.expiresAt!, esim.iccid);
-      }
     }
   }
 
@@ -106,115 +84,102 @@ class MyEsimsScreenState extends State<MyEsimsScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    Widget buildHeader() {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            FadeSlideIn(
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+            child: FadeSlideIn(
               child: Text(
                 l10n.myEsimsTitle,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-          ],
-        ),
-      );
-    }
-
-    if (!widget.api.isLoggedIn) {
-      return SafeArea(
-        child: CustomScrollView(
-          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          slivers: [
-            SliverToBoxAdapter(child: buildHeader()),
-            SliverFillRemaining(
-              hasScrollBody: false,
-              child: _GuestState(l10n: l10n, onLogin: widget.onLogin),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return SafeArea(
-      child: FutureBuilder<List<UserEsim>>(
-        future: _esimsFuture,
-        builder: (context, snapshot) {
-          return RefreshIndicator(
-            color: AppColors.primary,
-            onRefresh: () async {
-              refresh();
-              try {
-                await _esimsFuture;
-              } catch (_) {}
-            },
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-              slivers: [
-                SliverToBoxAdapter(child: buildHeader()),
-                if (snapshot.connectionState == ConnectionState.waiting)
-                  const SliverToBoxAdapter(
-                    child: EsimListSkeleton(),
-                  )
-                else if (snapshot.hasError)
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: ErrorStateView(
-                      title: isNetworkError(snapshot.error!)
-                          ? l10n.offlineTitle
-                          : l10n.apiError,
-                      message: formatApiError(l10n, snapshot.error!),
-                      retryLabel: l10n.retry,
-                      onRetry: refresh,
-                      icon: isNetworkError(snapshot.error!)
-                          ? Icons.wifi_off_rounded
-                          : Icons.cloud_off_rounded,
-                    ),
-                  )
-                else if (snapshot.data == null || snapshot.data!.isEmpty)
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: _EmptyState(l10n: l10n, onGoStore: widget.onGoStore),
-                  )
-                else
-                  SliverPadding(
-                    padding: EdgeInsets.fromLTRB(
-                      20,
-                      8,
-                      20,
-                      NavIslandLayout.bottomClearance(context),
-                    ),
-                    sliver: SliverList.separated(
-                      itemCount: snapshot.data!.length,
-                      separatorBuilder: (_, _) => const SizedBox(height: 12),
-                      itemBuilder: (context, index) {
-                        final esim = snapshot.data![index];
-                        return FadeSlideIn(
-                          delay: Duration(milliseconds: 50 * index.clamp(0, 8)),
-                          child: _EsimCard(
-                            esim: esim,
-                            statusLabel: _statusLabel(l10n, esim.status),
-                            statusColor: _statusColor(esim.status),
-                            l10n: l10n,
-                            onTap: () async {
-                              await Navigator.of(context).push(
-                                AppPageRoute(
-                                  page: EsimDetailScreen(api: widget.api, esim: esim),
-                                ),
-                              );
-                              if (mounted) refresh();
-                            },
-                          ),
+          ),
+          Expanded(
+            child: !widget.api.isLoggedIn
+                ? _GuestState(l10n: l10n, onLogin: widget.onLogin)
+                : RefreshIndicator(
+                    color: AppColors.primary,
+                    onRefresh: () async {
+                      refresh();
+                      await _esimsFuture;
+                    },
+                    child: FutureBuilder<List<UserEsim>>(
+                    future: _esimsFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const EsimListSkeleton();
+                      }
+                      if (snapshot.hasError) {
+                        return ListView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          children: [
+                            ErrorStateView(
+                              title: isNetworkError(snapshot.error!)
+                                  ? l10n.offlineTitle
+                                  : l10n.apiError,
+                              message: formatApiError(l10n, snapshot.error!),
+                              retryLabel: l10n.retry,
+                              onRetry: refresh,
+                              icon: isNetworkError(snapshot.error!)
+                                  ? Icons.wifi_off_rounded
+                                  : Icons.cloud_off_rounded,
+                            ),
+                          ],
                         );
-                      },
-                    ),
+                      }
+
+                      final esims = snapshot.data ?? [];
+                      if (esims.isEmpty) {
+                        return ListView(
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.sizeOf(context).height * 0.45,
+                              child: _EmptyState(l10n: l10n, onGoStore: widget.onGoStore),
+                            ),
+                          ],
+                        );
+                      }
+
+                      return ListView.separated(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        padding: EdgeInsets.fromLTRB(
+                          20,
+                          8,
+                          20,
+                          NavIslandLayout.bottomClearance(context),
+                        ),
+                        itemCount: esims.length,
+                        separatorBuilder: (_, _) => const SizedBox(height: 12),
+                        itemBuilder: (context, index) {
+                          final esim = esims[index];
+                          return FadeSlideIn(
+                            delay: Duration(milliseconds: 50 * index.clamp(0, 8)),
+                            child: _EsimCard(
+                              esim: esim,
+                              statusLabel: _statusLabel(l10n, esim.status),
+                              statusColor: _statusColor(esim.status),
+                              l10n: l10n,
+                              onTap: () async {
+                                await Navigator.of(context).push(
+                                  AppPageRoute(
+                                    page: EsimDetailScreen(api: widget.api, esim: esim),
+                                  ),
+                                );
+                                if (mounted) refresh();
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
-              ],
-            ),
-          );
-        },
+                  ),
+          ),
+        ],
       ),
     );
   }
@@ -248,22 +213,15 @@ class _EsimCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              if (esim.countryCode != null && esim.countryCode!.isNotEmpty)
-                CountryFlagAvatar(
-                  countryCode: esim.countryCode!.toUpperCase() == 'IQ' ? 'KRD' : esim.countryCode!,
-                  size: 44,
-                  borderRadius: 12,
-                )
-              else
-                Container(
-                  width: 44,
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: AppColors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Icon(Icons.sim_card_rounded, color: AppColors.primary),
+              Container(
+                width: 44,
+                height: 44,
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
                 ),
+                child: const Icon(Icons.sim_card_rounded, color: AppColors.primary),
+              ),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(

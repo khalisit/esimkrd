@@ -139,7 +139,12 @@ class _PaymentResultScreenState extends State<PaymentResultScreen>
                       ),
                 ),
                 const Spacer(),
-                if (_status == _PaymentStatus.success) ...[
+                if (_status == _PaymentStatus.confirming) ...[
+                  SecondaryButton(
+                    label: l10n.continueShopping,
+                    onPressed: _goHome,
+                  ),
+                ] else if (_status == _PaymentStatus.success) ...[
                   PrimaryButton(
                     label: l10n.viewMyEsims,
                     icon: Icons.sim_card_rounded,

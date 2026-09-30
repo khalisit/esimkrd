@@ -48,9 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (!widget.api.isLoggedIn) return;
     try {
       final response = await widget.api.get('/auth/me', auth: true);
-      if (mounted) {
-        setState(() => _user = response['user'] as Map<String, dynamic>?);
-      }
+      if (mounted) setState(() => _user = response['user'] as Map<String, dynamic>?);
     } on ApiException catch (e) {
       if (e.statusCode == 401 && mounted) {
         setState(() => _user = null);
@@ -101,15 +99,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
       setState(() => _user = null);
       widget.onAuthChanged();
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(l10n.accountDeleted)));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.accountDeleted)),
+        );
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(e.toString())));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
       }
     } finally {
       if (mounted) setState(() => _loading = false);
@@ -126,9 +124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
     if (!launched && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppLocalizations.of(context)!.errorGeneric('WhatsApp')),
-        ),
+        SnackBar(content: Text(AppLocalizations.of(context)!.errorGeneric('WhatsApp'))),
       );
     }
   }
@@ -139,77 +135,84 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final isGuest = !widget.api.isLoggedIn;
     final bottom = NavIslandLayout.bottomClearance(context);
 
-    return SafeArea(
-      child: RefreshIndicator(
-        color: AppColors.primary,
-        onRefresh: () async => await _loadUser(),
-        child: CustomScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          slivers: [
-            SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
-              sliver: SliverToBoxAdapter(
-                child: FadeSlideIn(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          l10n.profileTitle,
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ),
-                      const ProfileCurrencySection(compact: true),
-                    ],
+    if (isGuest) {
+      return SafeArea(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(20, 16, 20, bottom),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              FadeSlideIn(
+                child: Text(
+                  l10n.profileTitle,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.only(top: 4, bottom: 8),
+                    child: AccountLoginForm(
+                      auth: _auth,
+                      onSuccess: _onSocialSuccess,
+                    ),
                   ),
                 ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(20, 16, 20, bottom),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            FadeSlideIn(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      l10n.profileTitle,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ),
+                  const ProfileCurrencySection(compact: true),
+                ],
               ),
             ),
-            if (isGuest)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, 32, 20, bottom + 24),
-                  child: AccountLoginForm(
-                    auth: _auth,
-                    onSuccess: _onSocialSuccess,
-                  ),
-                ),
-              )
-            else
-              SliverPadding(
-                padding: EdgeInsets.fromLTRB(20, 0, 20, bottom),
-                sliver: SliverList.list(
-                  children: [
-                    if (_user != null)
-                      FadeSlideIn(
-                        delay: const Duration(milliseconds: 60),
-                        child: _LoggedInCard(
-                          name: _user!['name'] as String? ?? l10n.profileGuest,
-                          email: _user!['email'] as String? ?? '',
-                          onLogout: _logout,
-                          onDeleteAccount: _deleteAccount,
-                          logoutLabel: l10n.logout,
-                          deleteAccountLabel: l10n.deleteAccount,
-                          loading: _loading,
-                        ),
-                      ),
-                    const SizedBox(height: 12),
-                    FadeSlideIn(
-                      delay: const Duration(milliseconds: 100),
-                      child: _AccountMenuCard(
-                        api: widget.api,
-                        l10n: l10n,
-                        localeService: widget.localeService,
-                        onWhatsAppSupport: _openWhatsAppSupport,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    FadeSlideIn(
-                      delay: const Duration(milliseconds: 140),
-                      child: AccountLegalFooter(l10n: l10n),
-                    ),
-                  ],
+            const SizedBox(height: 16),
+            if (_user != null)
+              FadeSlideIn(
+                delay: const Duration(milliseconds: 60),
+                child: _LoggedInCard(
+                  name: _user!['name'] as String? ?? l10n.profileGuest,
+                  email: _user!['email'] as String? ?? '',
+                  onLogout: _logout,
+                  onDeleteAccount: _deleteAccount,
+                  logoutLabel: l10n.logout,
+                  deleteAccountLabel: l10n.deleteAccount,
+                  loading: _loading,
                 ),
               ),
+            const SizedBox(height: 12),
+            FadeSlideIn(
+              delay: const Duration(milliseconds: 100),
+              child: _AccountMenuCard(
+                api: widget.api,
+                l10n: l10n,
+                onWhatsAppSupport: _openWhatsAppSupport,
+              ),
+            ),
+            const SizedBox(height: 16),
+            FadeSlideIn(
+              delay: const Duration(milliseconds: 140),
+              child: AccountLegalFooter(l10n: l10n),
+            ),
           ],
         ),
       ),
@@ -221,83 +224,12 @@ class _AccountMenuCard extends StatelessWidget {
   const _AccountMenuCard({
     required this.api,
     required this.l10n,
-    required this.localeService,
     required this.onWhatsAppSupport,
   });
 
   final ApiClient api;
   final AppLocalizations l10n;
-  final LocaleService localeService;
   final VoidCallback onWhatsAppSupport;
-
-  void _showLanguagePicker(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  title: const Text(
-                    'کوردی',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  trailing: localeService.locale.languageCode == 'ku'
-                      ? const Icon(
-                          Icons.check_circle_rounded,
-                          color: AppColors.primary,
-                        )
-                      : null,
-                  onTap: () {
-                    localeService.setLocale(const Locale('ku'));
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: const Text(
-                    'English',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  trailing: localeService.locale.languageCode == 'en'
-                      ? const Icon(
-                          Icons.check_circle_rounded,
-                          color: AppColors.primary,
-                        )
-                      : null,
-                  onTap: () {
-                    localeService.setLocale(const Locale('en'));
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: const Text(
-                    'العربية',
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                  trailing: localeService.locale.languageCode == 'ar'
-                      ? const Icon(
-                          Icons.check_circle_rounded,
-                          color: AppColors.primary,
-                        )
-                      : null,
-                  onTap: () {
-                    localeService.setLocale(const Locale('ar'));
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -305,47 +237,6 @@ class _AccountMenuCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
       child: Column(
         children: [
-          ListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 4),
-            leading: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: AppColors.surfaceMuted,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(
-                Icons.language_rounded,
-                color: AppColors.textSecondary,
-                size: 20,
-              ),
-            ),
-            title: Text(l10n.language),
-            subtitle: Text(
-              localeService.locale.languageCode == 'ku'
-                  ? 'کوردی'
-                  : localeService.locale.languageCode == 'ar'
-                  ? 'العربية'
-                  : 'English',
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
-            ),
-            trailing: const Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.textMuted,
-              size: 22,
-            ),
-            onTap: () => _showLanguagePicker(context),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-          Divider(
-            height: 1,
-            indent: 52,
-            color: AppColors.border.withValues(alpha: 0.6),
-          ),
           ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 4),
             leading: Container(
@@ -368,9 +259,7 @@ class _AccountMenuCard extends StatelessWidget {
               size: 22,
             ),
             onTap: () => OrderHistory.open(context, api),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           Divider(
             height: 1,
@@ -387,10 +276,7 @@ class _AccountMenuCard extends StatelessWidget {
                 color: const Color(0xFF25D366).withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Image.asset(
-                'assets/images/whatsap.png',
-                fit: BoxFit.contain,
-              ),
+              child: Image.asset('assets/images/whatsap.png', fit: BoxFit.contain),
             ),
             title: Text(l10n.helpSupport),
             subtitle: Text(
@@ -406,9 +292,7 @@ class _AccountMenuCard extends StatelessWidget {
               color: AppColors.textMuted.withValues(alpha: 0.85),
             ),
             onTap: onWhatsAppSupport,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
           Divider(
             height: 1,

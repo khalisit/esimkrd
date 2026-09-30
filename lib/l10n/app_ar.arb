@@ -87,6 +87,8 @@
   "paymentMethodFibDesc": "تحويل بنكي بالدينار العراقي",
   "paymentMethodCard": "الدفع بالبطاقة",
   "paymentMethodCardDesc": "Visa و Mastercard و Apple Pay",
+  "paymentMethodRasedi": "دفع آمن",
+  "paymentMethodRasediDesc": "FIB و ZainCash و FastPay و Nass و AsiaPay والبطاقة",
   "paymentBadgePopular": "الأكثر استخداماً",
   "paymentBadgeInstant": "تسليم فوري",
   "paymentBadgeLocal": "العراق",
@@ -96,7 +98,7 @@
       "amount": { "type": "String" }
     }
   },
-  "securedByStripe": "محمي بواسطة Stripe",
+  "securedByStripe": "دفع آمن",
   "copiedToClipboard": "تم نسخ {label}",
   "@copiedToClipboard": {
     "placeholders": {

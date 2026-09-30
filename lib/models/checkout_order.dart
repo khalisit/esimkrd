@@ -42,17 +42,21 @@ class CheckoutOrder {
   final String? fibCorporateLink;
 
   bool get isMockPayment =>
-      paymentUrl.contains('/dev/orders/') && paymentUrl.endsWith('/pay');
+      gateway == 'mock' ||
+      (paymentUrl.contains('/dev/orders/') &&
+          (paymentUrl.endsWith('/pay') || paymentUrl.contains('/pay?')));
 
   bool get isFib => gateway == 'fib';
 
   bool get isFibManual => gateway == 'fib_manual';
 
+  bool get isRasedi => gateway == 'rasedi';
+
   bool get isLemonSqueezy => gateway == 'lemon_squeezy';
 
   bool get isStripe => gateway == 'stripe';
 
-  bool get isCardCheckout => isLemonSqueezy || isStripe;
+  bool get isCardCheckout => isLemonSqueezy || isStripe || isRasedi;
 
   factory CheckoutOrder.fromCreateResponse(Map<String, dynamic> response) {
     final data = response['data'] as Map<String, dynamic>;

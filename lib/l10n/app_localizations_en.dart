@@ -274,6 +274,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paymentMethodCardDesc => 'Visa, Mastercard & Apple Pay';
 
   @override
+  String get paymentMethodRasedi => 'Pay securely';
+
+  @override
+  String get paymentMethodRasediDesc =>
+      'FIB, ZainCash, FastPay, Nass, AsiaPay & card';
+
+  @override
   String get paymentBadgePopular => 'Popular';
 
   @override
@@ -288,7 +295,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get securedByStripe => 'Secured by Stripe';
+  String get securedByStripe => 'Secured payment';
 
   @override
   String copiedToClipboard(String label) {

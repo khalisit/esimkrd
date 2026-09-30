@@ -12,41 +12,41 @@ class AppLocalizationsKu extends AppLocalizations {
   String get appTitle => 'eSIM KRD';
 
   @override
-  String get heroTitlePart1 => 'لە هەر کوێیەک بیت ';
+  String get heroTitlePart1 => 'گەشت بکە ';
 
   @override
-  String get heroTitleHighlight => 'بە ئینتەرنێتەوە';
+  String get heroTitleHighlight => 'پەیوەندیدار';
 
   @override
-  String get heroTitlePart2 => ' بەستراوەبە';
+  String get heroTitlePart2 => '، لە هەر شوێنێک';
 
   @override
   String get heroSubtitle =>
-      'پاکێجی eSIM بۆ زیاتر لە ٢٠٠ وڵات. گەیاندنی دەستبەجێ، بێ پێویستی بە سیمکارتی فیزیکی.';
+      'پاکێجی eSIM بۆ ٢٠٠+ وڵات. گەیاندنی خێرا، بێ SIM فیزیکی.';
 
   @override
   String destinationsCount(int count) {
-    return 'زیاتر لە $count وڵات';
+    return '$count+ شوێن';
   }
 
   @override
-  String get getStarted => 'دەستپێبکە';
+  String get getStarted => 'دەست پێبکە';
 
   @override
-  String get browsePlans => 'پاکێجەکان ببینە';
+  String get browsePlans => 'پلانەکان ببینە';
 
   @override
-  String get searchCountries => 'بگەڕێ بۆ وڵاتێک...';
+  String get searchCountries => 'گەڕان بۆ وڵات...';
 
   @override
   String get kurdistanRegion => 'کوردستان و دەوروبەر';
 
   @override
   String get kurdistanRegionSubtitle =>
-      'پاکێجەکانی عێراق، تورکیا، ئەوروپا و زیاتر';
+      'پلان بۆ عێراق، تورکیا، ئەوروپا و زیاتر';
 
   @override
-  String get popularDestinations => 'وڵاتە داواکراوەکان';
+  String get popularDestinations => 'شوێنە بەناوبانگەکان';
 
   @override
   String get allCountries => 'هەموو وڵاتەکان';
@@ -55,57 +55,57 @@ class AppLocalizationsKu extends AppLocalizations {
   String get noResults => 'هیچ ئەنجامێک نەدۆزرایەوە';
 
   @override
-  String get loadingCountries => 'لە بارکردندایە...';
+  String get loadingCountries => 'وڵاتەکان بار دەکرێن...';
 
   @override
-  String get loadingPackages => 'پاکێجەکان باردەکرێن...';
+  String get loadingPackages => 'پاکێجەکان بار دەکرێن...';
 
   @override
-  String get loading => 'چاوەڕێبە...';
+  String get loading => 'بارکردن...';
 
   @override
-  String get apiError => 'کێشە لە پەیوەندیکردندایە';
+  String get apiError => 'ناتوانرێت API بگات';
 
   @override
   String get retry => 'دووبارە هەوڵبدەرەوە';
 
   @override
-  String get loginRequired => 'تکایە سەرەتا بچۆ ژوورەوە';
+  String get loginRequired => 'تکایە سەرەتا چوونەژوورەوە بکە';
 
   @override
-  String get orderCreated => 'داواکارییەکەت سەرکەوتوو بوو ✅';
+  String get orderCreated => 'داواکاری دروستکرا ✅';
 
   @override
-  String get openingPayment => 'چوون بۆ پەڕەی پارەدان...';
+  String get openingPayment => 'کردنەوەی پەڕەی پارەدان...';
 
   @override
-  String get paymentUrlMissing => 'بەستەری پارەدان نەدۆزرایەوە';
+  String get paymentUrlMissing => 'بەستەری پارەدان نەگەڕایەوە';
 
   @override
   String get paymentTitle => 'پارەدان';
 
   @override
   String get paymentComplete =>
-      'پارەدانەکە سەرکەوتوو بوو — eSIM-ەکەت بەم زووانە بەردەست دەبێت.';
+      'پارەدان تەواوبوو — eSIMـەکەت بەم زووانە دەردەکەوێت';
 
   @override
   String get checkoutTitle => 'کڕین';
 
   @override
-  String get orderSummary => 'پوختەی داواکارییەکە';
+  String get orderSummary => 'پوختەی داواکاری';
 
   @override
   String get total => 'کۆی گشتی';
 
   @override
-  String get subtotal => 'نرخ';
+  String get subtotal => 'کۆی گشتی';
 
   @override
-  String get totalIqd => 'کۆی گشتی (بە دینار)';
+  String get totalIqd => 'کۆی گشتی (دینار)';
 
   @override
   String orderNumber(int id) {
-    return 'داواکاری ژمارە $id';
+    return 'داواکاری #$id';
   }
 
   @override
@@ -119,77 +119,76 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get checkoutDisclaimer =>
-      'eSIM-ەکەت دەستبەجێ دوای پشتڕاستکردنەوەی پارەدانەکە بەردەست دەبێت.';
+      'eSIMـەکەت دەستبەجێ دوای دڵنیاکردنەوەی پارەدان دەگەیەنرێت.';
 
   @override
-  String get loadingPayment => 'کردنەوەی پەڕەی پارەدانی پارێزراو...';
+  String get loadingPayment => 'کردنەوەی پارەدانی پارێزراو...';
 
   @override
-  String get cancelPayment => 'پارەدانەکە هەڵدەوەشێنیتەوە؟';
+  String get cancelPayment => 'هەڵوەشاندنەوەی پارەدان؟';
 
   @override
   String get cancelPaymentConfirm =>
-      'داواکارییەکەت پاشەکەوت کراوە. دەتوانیت دواتر پارەدانەکە تەواو بکەیت.';
+      'داواکارییەکەت پاشەکەوت کراوە. دەتوانیت دواتر پارەدان تەواو بکەیت.';
 
   @override
-  String get stay => 'بەردەوامبوون';
+  String get stay => 'بەردەوامبوون لە پارەدان';
 
   @override
   String get leave => 'دەرچوون';
 
   @override
-  String get confirmingPayment => 'پشتڕاستکردنەوەی پارەدان';
+  String get confirmingPayment => 'دڵنیاکردنەوەی پارەدان';
 
   @override
   String get confirmingPaymentSubtitle =>
-      'تکایە چاوەڕێ بە تاوەکو مامەڵەکەت پشتڕاست دەکرێتەوە...';
+      'تکایە چاوەڕێ بکە تا مامەڵەکەت پشتڕاست دەکرێتەوە...';
 
   @override
-  String get paymentSuccess => 'پارەدانەکە سەرکەوتوو بوو!';
+  String get paymentSuccess => 'پارەدان سەرکەوتوو بوو!';
 
   @override
   String get paymentSuccessSubtitle =>
-      'eSIM-ەکەت ئامادە دەکرێت و بەم زووانە لە بەشی \'eSIM-ەکانم\' دەردەکەوێت.';
+      'eSIMـەکەت ئامادە دەکرێت و بەم زووانە لە eSIMـەکانمدا دەردەکەوێت.';
 
   @override
-  String get paymentPending => 'پارەدانەکە لە جێبەجێکردندایە';
+  String get paymentPending => 'پارەدان لە جێبەجێکردندایە';
 
   @override
   String get paymentPendingSubtitle =>
-      'هێشتا چاوەڕوانی پشتڕاستکردنەوەین. تکایە دوای چەند خولەکێکی تر سەیری بەشی \'eSIM-ەکانم\' بکە.';
+      'هێشتا چاوەڕوانی دڵنیاکردنەوەین. چەند خولەکێک دواتر سەیری eSIMـەکانم بکە.';
 
   @override
-  String get paymentFailed => 'پارەدانەکە پشتڕاست نەکراوەتەوە';
+  String get paymentFailed => 'نەتوانرا پارەدان دڵنیا بکرێتەوە';
 
   @override
   String get paymentFailedSubtitle =>
-      'ئەگەر پارەکەت لێ بڕاوە، تکایە پەیوەندی بە تیمی پشتگیرییەوە بکە و ژمارەی داواکارییەکەت پێبدە.';
+      'ئەگەر پارە دراوە، پەیوەندی بە پشتگیریەوە بکە لەگەڵ ژمارەی داواکاری.';
 
   @override
-  String get viewMyEsims => 'eSIM-ەکانم ببینە';
+  String get viewMyEsims => 'بینینی eSIMـەکانم';
 
   @override
   String get continueShopping => 'بەردەوامبوون لە کڕین';
 
   @override
-  String get paymentStepsTitle => 'چۆنیەتی پارەدان بە کارتی بانکی';
+  String get paymentStepsTitle => 'چۆن بە Visa / کارت پارە بدەیت';
 
   @override
-  String get paymentStep1 => 'ژمارەی واتسئاپ بنووسە لەگەڵ کۆدی پشتڕاستکردنەوە';
+  String get paymentStep1 => 'ژمارەی واتسئاپ + کۆدی پشتڕاستکردنەوە';
 
   @override
-  String get paymentStep2 => 'لە بەشی پارەدان تابی «Cards» هەڵبژێرە';
+  String get paymentStep2 => 'تابی «Cards» هەڵبژێرە (Visa / Mastercard)';
 
   @override
-  String get paymentStep3 =>
-      'زانیارییەکانی کارتەکەت بنووسە (ژمارە، بەروار و CVV)';
+  String get paymentStep3 => 'ژمارەی کارت، بەروار و CVV بنووسە';
 
   @override
-  String get paymentStep4 => 'eSIM-ەکەت دەستبەجێ دوای پارەدان بەردەست دەبێت';
+  String get paymentStep4 => 'eSIMـەکەت دەستبەجێ دوای پارەدان دەگات';
 
   @override
   String get paymentWaylNote =>
-      'پلاتفۆرمی Wayl پێویستی بە ژمارەی واتسئاپە بۆ پشتڕاستکردنەوە، دواتر فۆڕمی کارتەکە دەردەکەوێت.';
+      'Wayl پێشتر واتسئاپ دەوێت — دواتر فۆڕمی کارت دەردەکەوێت.';
 
   @override
   String get continueToPay => 'بەردەوامبوون بۆ پارەدان';
@@ -198,65 +197,61 @@ class AppLocalizationsKu extends AppLocalizations {
   String get paymentSheetHint => 'پارێزراو · FIB · زینکاش · Visa';
 
   @override
-  String get fibPaymentTitle => 'پارەدان لە ڕێگەی FIB';
+  String get fibPaymentTitle => 'پارەدان بە FIB';
 
   @override
-  String get fibPaymentSubtitle =>
-      'ئەپی FIB بکەرەوە، پارەکە بنێرە و دواتر بگەڕێرەوە ئێرە.';
+  String get fibPaymentSubtitle => 'FIB بکەرەوە، پارە بنێرە، دواتر بگەڕێرەوە.';
 
   @override
   String get fibAccountLabel => 'هەژماری FIB';
 
   @override
-  String get fibPhoneLabel => 'ژمارەی مۆبایلی FIB';
+  String get fibPhoneLabel => 'ژمارەی FIB';
 
   @override
   String get fibIbanLabel => 'IBAN';
 
   @override
-  String get fibReferenceLabel => 'کۆدی سەرچاوە (لە بەشی تێبینی بینووسە)';
+  String get fibReferenceLabel => 'کۆدی سەرچاوە (لە تێبینی بنووسە)';
 
   @override
   String get fibPaymentNote =>
-      'بڕی پارەکە بە تەواوی بنێرە بۆ هەژماری FIB، و دڵنیابە لە نووسینی \'کۆدی سەرچاوە\' لە بەشی تێبینی (Note).';
+      'بڕی IQD بە تەواوی بنێرە بۆ هەژماری FIB. کۆدی سەرچاوە لە تێبینی بنووسە.';
 
   @override
   String get fibOpenApp => 'کردنەوەی ئەپی FIB';
 
   @override
   String get fibOpenAppManually =>
-      'ئەپی FIB لە مۆبایلەکەت بکەرەوە و پارەکە بنێرە.';
+      'ئەپی FIB لە مۆبایلەکەت بکەرەوە و پارە بنێرە.';
 
   @override
-  String get fibMarkPaid => 'پارەکەم نارد';
+  String get fibMarkPaid => 'پارەم نارد';
 
   @override
-  String get fibStepsTitle => 'چۆنیەتی پارەدان بە FIB';
+  String get fibStepsTitle => 'چۆن بە FIB پارە بدەیت';
 
   @override
   String get fibStep1 => 'ئەپی FIB لە مۆبایلەکەت بکەرەوە';
 
   @override
-  String get fibStep2 => 'بڕی پارەکە بە تەواوی بنێرە';
+  String get fibStep2 => 'بڕی IQD بە تەواوی بنێرە';
 
   @override
-  String get fibStep3 =>
-      'دڵنیابە \'کۆدی سەرچاوە\' لە بەشی تێبینی (Note) دەنووسیت';
+  String get fibStep3 => 'کۆدی سەرچاوە لە تێبینی بنووسە';
 
   @override
-  String get fibStep4 =>
-      'دوگمەی «پارەکەم نارد» دابگرە — ئێمە دڵنیای دەکەینەوە و eSIM-ەکەت پێ دەگەیەنین';
+  String get fibStep4 => '«پارەم نارد» بگرە — دڵنیا دەکەینەوە و eSIM دەگەیەنین';
 
   @override
-  String get fibSheetHint =>
-      'گواستنەوەی دەستی FIB · لە ماوەی چەند کاتژمێرێکدا پشتڕاست دەکرێتەوە';
+  String get fibSheetHint => 'گواستنەوەی دەستی FIB · لە ماوەی چەند کاتژمێردا';
 
   @override
-  String get fibManualPendingTitle => 'پارەدانەکە نێردرا';
+  String get fibManualPendingTitle => 'پارەدان نێردرا';
 
   @override
   String get fibManualPendingSubtitle =>
-      'پارەدانەکەت گەیشت، پاش پشتڕاستکردنەوەی لەلایەن تیمی ئێمەوە، eSIM-ەکەت لە بەشی \'eSIM-ەکانم\' دەردەکەوێت.';
+      'دڵنیاکردنەوەکەت وەرگرت. دوای پشتڕاستکردنەوەی گواستنەوەی FIB، eSIM لە «eSIMـەکانم» دەردەکەوێت.';
 
   @override
   String get paymentMethodTitle => 'شێوازی پارەدان';
@@ -278,10 +273,17 @@ class AppLocalizationsKu extends AppLocalizations {
   String get paymentMethodCardDesc => 'Visa، Mastercard و Apple Pay';
 
   @override
-  String get paymentBadgePopular => 'باوترین';
+  String get paymentMethodRasedi => 'پارەدانی پارێزراو';
 
   @override
-  String get paymentBadgeInstant => 'خێرا';
+  String get paymentMethodRasediDesc =>
+      'FIB، ZainCash، FastPay، Nass، AsiaPay و کارت';
+
+  @override
+  String get paymentBadgePopular => 'بەناوبانگ';
+
+  @override
+  String get paymentBadgeInstant => 'گەیاندنی خێرا';
 
   @override
   String get paymentBadgeLocal => 'عێراق';
@@ -292,7 +294,7 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get securedByStripe => 'پارێزراو لەلایەن Stripe-ەوە';
+  String get securedByStripe => 'پارەدانی پارێزراو';
 
   @override
   String copiedToClipboard(String label) {
@@ -306,7 +308,7 @@ class AppLocalizationsKu extends AppLocalizations {
   String get fibScanTitle => 'بۆ پارەدان بە FIB سکان بکە';
 
   @override
-  String get fibScanSubtitle => 'ئەپی FIB بکەرەوە و ئەم کۆدە QR-ە سکان بکە';
+  String get fibScanSubtitle => 'ئەپی FIB بکەرەوە و ئەم کۆدە QRـە سکان بکە';
 
   @override
   String get fibReadableCode => 'کۆدی پارەدان';
@@ -329,34 +331,33 @@ class AppLocalizationsKu extends AppLocalizations {
 
   @override
   String get fibAppNotInstalled =>
-      'نەتوانرا ئەپی FIB بکرێتەوە. تکایە لەجیاتی ئەوە کۆدی QR-ەکە سکان بکە.';
+      'نەتوانرا ئەپی FIB بکرێتەوە. تکایە لەجیاتی ئەوە کۆدی QR سکان بکە.';
 
   @override
-  String get fibTransferDetails => 'وردەکارییەکانی گواستنەوە';
+  String get fibTransferDetails => 'وردەکاری گواستنەوە';
 
   @override
   String get cardCheckoutSubtitle =>
-      'پارەدانەکەت لەسەر پەڕەیەکی پارێزراوی Stripe تەواو دەکەیت';
+      'پارەدان لەسەر پەڕەی پارێزراوی Stripe تەواو دەکەیت';
 
   @override
-  String get cardPaymentTitle => 'پارەدانی پارێزراو بە کارت';
+  String get cardPaymentTitle => 'پارەدانی ئاسایشی کارت';
 
   @override
   String get cardPaymentNote =>
-      'پارەدانەکەت لە ڕێگەی Stripe-ەوە تەواو بکە و eSIM-ەکەت ڕاستەوخۆ بەردەست دەبێت.';
+      'پارەدان لەسەر Stripe تەواو بکە. eSIM خۆکار دەگات.';
 
   @override
-  String get cardStepsTitle => 'چۆنیەتی پارەدان بە کارتی بانکی';
+  String get cardStepsTitle => 'چۆن بە کارت پارە بدەیت';
 
   @override
-  String get cardStep1 =>
-      'زانیارییەکانی کارتەکەت لە پەڕەیەکی پارێزراودا بنووسە';
+  String get cardStep1 => 'وردەکاری کارت لە پەڕەی ئاسایش بنووسە';
 
   @override
-  String get cardStep2 => 'پارەدانەکەت لە ڕێگەی Stripe-ەوە تەواو بکە';
+  String get cardStep2 => 'پارەدان تەواو بکە — Stripe';
 
   @override
-  String get cardStep3 => 'eSIM-ەکەت دەستبەجێ لە بەشی «eSIM-ەکانم» دەردەکەوێت';
+  String get cardStep3 => 'eSIM دەستبەجێ لە «eSIMـەکانم» دەردەکەوێت';
 
   @override
   String get cardSheetHint => 'شێوەزاری 256-bit · Stripe · Visa · Mastercard';
@@ -367,16 +368,16 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get noPackages => 'هیچ پاکێجێک بەردەست نییە';
+  String get noPackages => 'هیچ پاکێجێک نییە';
 
   @override
   String plansAvailable(int count) {
-    return '$count پاکێج بەردەستە';
+    return '$count پلان بەردەستە';
   }
 
   @override
   String get countryHeroDesc =>
-      'پاکێجێکی ئینتەرنێت هەڵبژێرە. eSIM-ەکەت بە کۆدی QR وەربگرە — بێ پێویستی بە سەردانکردنی فرۆشگا.';
+      'پلانی داتا هەڵبژێرە. eSIM بە QR — بێ سەردانی فرۆشگا.';
 
   @override
   String daysCount(int count) {
@@ -387,19 +388,19 @@ class AppLocalizationsKu extends AppLocalizations {
   String get buy => 'کڕین';
 
   @override
-  String get details => 'وردەکارییەکان';
+  String get details => 'وردەکاری';
 
   @override
   String get less => 'کەمتر';
 
   @override
-  String get packageDetails => 'گەیاندنی eSIM · QR code · بێ سیمکارتی فیزیکی';
+  String get packageDetails => 'گەیاندنی eSIM · QR code · بێ SIM فیزیکی';
 
   @override
   String get unlimited => 'بێسنوور';
 
   @override
-  String get filterAll => 'هەمووی';
+  String get filterAll => 'هەموو';
 
   @override
   String get filterLimited => 'سنووردار';
@@ -408,13 +409,13 @@ class AppLocalizationsKu extends AppLocalizations {
   String get welcomeBack => 'بەخێربێیتەوە';
 
   @override
-  String get createAccount => 'دروستکردنی هەژمار';
+  String get createAccount => 'هەژمار دروستکردن';
 
   @override
   String get signInTo => 'چوونەژوورەوە بۆ ';
 
   @override
-  String get join => 'بەشداریکردن لە ';
+  String get join => 'بەشداری ';
 
   @override
   String get name => 'ناو';
@@ -426,28 +427,28 @@ class AppLocalizationsKu extends AppLocalizations {
   String get password => 'وشەی نهێنی';
 
   @override
-  String get register => 'خۆتۆمارکردن';
+  String get register => 'تۆمارکردن';
 
   @override
   String get login => 'چوونەژوورەوە';
 
   @override
-  String get continueWithGoogle => 'بەردەوامبوون لەگەڵ Google';
+  String get continueWithGoogle => 'بەردەوامبوون بە Google';
 
   @override
-  String get continueWithApple => 'بەردەوامبوون لەگەڵ Apple';
+  String get continueWithApple => 'بەردەوامبوون بە Apple';
 
   @override
   String get signInWithAccount => 'چوونەژوورەوە بە هەژمار';
 
   @override
-  String get emailPasswordDesc => 'بە ئیمەیڵ و وشەی نهێنی';
+  String get emailPasswordDesc => 'ئیمەیڵ و وشەی نهێنی';
 
   @override
-  String get createAccountHint => 'ناو، ئیمەیڵ و وشەی نهێنییەکی نوێ بنووسە';
+  String get createAccountHint => 'ناو، ئیمەیڵ و وشەی نهێنی بنووسە';
 
   @override
-  String get confirmPassword => 'دڵنیاکردنەوەی وشەی نهێنی';
+  String get confirmPassword => 'دووبارەکردنەوەی وشەی نهێنی';
 
   @override
   String get fieldRequired => 'ئەم خانەیە پێویستە';
@@ -456,31 +457,31 @@ class AppLocalizationsKu extends AppLocalizations {
   String get invalidEmail => 'ئیمەیڵێکی دروست بنووسە';
 
   @override
-  String get passwordMinLength => 'پێویستە وشەی نهێنی لانیکەم ٨ پیت بێت';
+  String get passwordMinLength => 'وشەی نهێنی لانیکەم ٨ پیت بێت';
 
   @override
-  String get passwordMismatch => 'وشە نهێنییەکان هاوتا نین';
+  String get passwordMismatch => 'وشە نهێنییەکان یەک ناگرنەوە';
 
   @override
-  String get googleSignInDesc => 'تەنیا بە یەک کلیک · بە تەواوی پارێزراوە';
+  String get googleSignInDesc => 'تەنها یەک کلیک · پارێزراو';
 
   @override
-  String get signInDisclaimer => 'زانیارییەکانت بە پارێزراوی دەمێننەوە';
+  String get signInDisclaimer => 'چوونەژوورەوە بە پارێزراوی پارێزراوە';
 
   @override
-  String get signInWithSocial => 'یان ڕاستەوخۆ بە Google یان Apple بڕۆ ژوورەوە';
+  String get signInWithSocial => 'یان بەردەوامبە لەگەڵ Google یان Apple';
 
   @override
-  String get haveAccount => 'هەژمارت هەیە؟ لێرەوە بچۆ ژوورەوە';
+  String get haveAccount => 'هەژمارت هەیە؟ چوونەژوورەوە';
 
   @override
-  String get noAccount => 'هەژمارێکی نوێ دروستبکە';
+  String get noAccount => 'هەژمارێکی نوێ دروست بکە';
 
   @override
-  String get loginSuccess => 'سەرکەوتووانە چوویتە ژوورەوە';
+  String get loginSuccess => 'چوونەژوورەوە سەرکەوت';
 
   @override
-  String get canBuyNow => 'ئێستا دەتوانیت ئاسانتر eSIM بکڕیت';
+  String get canBuyNow => 'ئێستا دەتوانیت eSIM بکڕیت';
 
   @override
   String get logout => 'چوونەدەرەوە';
@@ -489,26 +490,26 @@ class AppLocalizationsKu extends AppLocalizations {
   String get deleteAccount => 'سڕینەوەی هەژمار';
 
   @override
-  String get deleteAccountTitle => 'دڵنیایت لە سڕینەوەی هەژمارەکەت؟';
+  String get deleteAccountTitle => 'هەژمارەکەت بسڕیتەوە؟';
 
   @override
   String get deleteAccountMessage =>
-      'هەموو زانیارییەکانی هەژمارەکەت، داواکارییەکانت و eSIM-ەکانت بە یەکجاری دەسڕێنەوە و ناتوانیت بیانگەڕێنیتەوە.';
+      'هەژمار، داواکاری و eSIMـەکانت بە تەواوی دەسڕێنەوە. ئەم کارە ناگەڕێتەوە.';
 
   @override
-  String get deleteAccountConfirm => 'بەڵێ، بسڕەوە';
+  String get deleteAccountConfirm => 'سڕینەوە';
 
   @override
   String get cancel => 'پاشگەزبوونەوە';
 
   @override
-  String get accountDeleted => 'هەژمارەکەت بە سەرکەوتوویی سڕایەوە';
+  String get accountDeleted => 'هەژمارەکەت سڕایەوە';
 
   @override
-  String get splashTagline => 'لە هەر شوێنێکی جیهان بیت، هەمیشە لەسەر هێڵ بە';
+  String get splashTagline => 'گەشت بکە پەیوەندیدار، لە هەر شوێنێک';
 
   @override
-  String get language => 'زمان (Language)';
+  String get language => 'زمان';
 
   @override
   String get english => 'English';
@@ -523,32 +524,32 @@ class AppLocalizationsKu extends AppLocalizations {
   String get navStore => 'فرۆشگا';
 
   @override
-  String get navMyEsims => 'eSIM-ەکانم';
+  String get navMyEsims => 'eSIMـەکانم';
 
   @override
   String get navProfile => 'هەژمار';
 
   @override
-  String get myEsimsTitle => 'eSIM-ەکانم';
+  String get myEsimsTitle => 'eSIMـەکانم';
 
   @override
-  String get myEsimsEmpty => 'تا ئێستا هیچ eSIM-ێکت نەکڕیوە';
+  String get myEsimsEmpty => 'هێشتا هیچ eSIMـێکت نەکڕیوە';
 
   @override
-  String get myEsimsLogin => 'بۆ بینینی eSIM-ەکانت پێویستە بچیتە ژوورەوە';
+  String get myEsimsLogin => 'چوونەژوورەوە بکە بۆ بینینی eSIMـەکانت';
 
   @override
   String get myEsimsGoStore => 'بڕۆ بۆ فرۆشگا';
 
   @override
-  String get profileTitle => 'هەژمارەکەم';
+  String get profileTitle => 'هەژمار';
 
   @override
   String get profileGuest => 'میوان';
 
   @override
   String get profileGuestHint =>
-      'بۆ بەڕێوەبردنی هەژمارەکەت و eSIM-ەکانت، بچۆ ژوورەوە.';
+      'چوونەژوورەوە بکە بۆ بەڕێوەبردنی هەژمار و eSIM';
 
   @override
   String get statusActive => 'چالاک';
@@ -557,16 +558,16 @@ class AppLocalizationsKu extends AppLocalizations {
   String get statusExpired => 'بەسەرچوو';
 
   @override
-  String get statusDepleted => 'تەواوبووە';
+  String get statusDepleted => 'تەواوبوو';
 
   @override
   String dataUsage(String used, String total) {
-    return 'بەکارهاتوو: $used / $total';
+    return 'داتا: $used / $total';
   }
 
   @override
   String expiresOn(String date) {
-    return 'ڕێکەوتی بەسەرچوون: $date';
+    return 'بەسەردەچێت: $date';
   }
 
   @override
@@ -575,24 +576,24 @@ class AppLocalizationsKu extends AppLocalizations {
   }
 
   @override
-  String get esimTapToInstall => 'کلیک بکە بۆ زانیاری بەکارهێنان و دامەزراندن';
+  String get esimTapToInstall => 'کلیک بکە بۆ بەکارهێنان و دامەزراندن';
 
   @override
-  String get esimDetailTitle => 'وردەکارییەکانی eSIM';
+  String get esimDetailTitle => 'وردەکاری eSIM';
 
   @override
-  String get esimRefreshUsage => 'نوێکردنەوەی زانیاری';
+  String get esimRefreshUsage => 'نوێکردنەوەی بەکارهێنان';
 
   @override
   String get esimUsageTitle => 'بەکارهێنانی داتا';
 
   @override
   String get esimUsageUnavailable =>
-      'دوای ئەوەی eSIM-ەکەت لە تۆڕەکەدا چالاک بوو، زانیاری بەکارهێنان لێرە دەردەکەوێت.';
+      'دوای چالاکبوونی eSIM لە تۆڕ، بەکارهێنان دەردەکەوێت.';
 
   @override
   String esimUsageSummary(String used, String total) {
-    return '$used بەکارهاتووە لە کۆی $total';
+    return '$used لە $total بەکار هاتووە';
   }
 
   @override
@@ -611,233 +612,230 @@ class AppLocalizationsKu extends AppLocalizations {
   String get esimUnlimited => 'بێسنوور';
 
   @override
-  String get esimUnlimitedHint => 'ئەم پاکێجە ئینتەرنێتی بێسنووری لەگەڵدایە.';
+  String get esimUnlimitedHint => 'ئەم پلانە داتای بێسنووری هەیە.';
 
   @override
   String get esimStatusNotActive => 'هێشتا چالاک نەکراوە';
 
   @override
   String esimVoiceLeft(int remaining, int total) {
-    return 'پەیوەندی: $remaining / $total خولەک';
+    return 'دەنگ: $remaining / $total خولەک';
   }
 
   @override
   String esimSmsLeft(int remaining, int total) {
-    return 'کورتەنامە: $remaining / $total';
+    return 'SMS: $remaining / $total';
   }
 
   @override
-  String get esimTabIphone => 'ئایفۆن';
+  String get esimTabIphone => 'iPhone';
 
   @override
-  String get esimTabAndroid => 'ئەندرۆید';
+  String get esimTabAndroid => 'Android';
 
   @override
   String get esimInstallTitle => 'دامەزراندنی eSIM';
 
   @override
-  String get esimInstallHowTitle => 'دامەزراندنی eSIM';
+  String get esimInstallHowTitle => 'eSIMـەکەت دابمەزرێنە';
 
   @override
   String get esimInstallHowSubtitle =>
-      'جۆری مۆبایلەکەت هەڵبژێرە. لە ئایفۆن تەنها بە یەک کلیک، وە لە ئەندرۆید لە ڕێگەی سکانکردنی QR کۆدەوە دەبێت.';
+      'جۆری مۆبایلەکەت هەڵبژێرە. لە iPhone یەک کلیک، لە Android QR سکان بکە.';
 
   @override
-  String get esimScanQr => 'ئەم کۆدی QR-ە سکان بکە';
+  String get esimScanQr => 'ئەم کۆدی QR سکان بکە';
 
   @override
-  String get esimInstallOnIphone => 'دامەزراندن لەسەر ئایفۆن';
+  String get esimInstallOnIphone => 'دامەزراندن لەسەر iPhone';
 
   @override
   String get esimInstallOnIphoneHint =>
-      'لەسەر سیستەمی iOS 17.4 و بەرەو سەر باشترینە. ڕاستەوخۆ پەڕەی دامەزراندنی eSIM-ی ئەپڵ دەکاتەوە.';
+      'باشترینە لەسەر iOS 17.4+. ڕێکخستنی eSIMـی ئەپڵ دەکاتەوە.';
 
   @override
-  String get esimManualTitle => 'زانیارییەکان بە دەستی';
+  String get esimManualTitle => 'کۆدەکانی دەستی';
 
   @override
   String get esimManualSubtitle =>
-      'ئەگەر QR کۆد یان یەک کلیک کاری نەکرد، کلیک لە زانیارییەکانی خوارەوە بکە بۆ کۆپیکردن و بە دەستی دایانمەزرێنە.';
+      'کلیک بکە بۆ کۆپی. ئەگەر QR یان یەک کلیک نەبوو.';
 
   @override
-  String get esimSmdpAddress => 'بەستەری SM-DP+';
+  String get esimSmdpAddress => 'SM-DP+ Address';
 
   @override
-  String get esimActivationCode => 'کۆدی چالاککردن (Activation)';
+  String get esimActivationCode => 'Activation Code';
 
   @override
-  String get esimConfirmationCode => 'کۆدی دڵنیاکردنەوە (Confirmation)';
+  String get esimConfirmationCode => 'Confirmation Code';
 
   @override
   String get esimConfirmationOptional =>
-      'تێبینی: Confirmation Code بەتاڵی جێبهێڵە مەگەر ئەوەی کۆمپانیای پەیوەندییەکە کۆدێکی تایبەتی پێدابیت.';
+      'Confirmation Code: بەتاڵی بهێڵە مەگەر کۆمپانیا کۆدی پێدابیت.';
 
   @override
-  String get esimStepsIphoneTitle => 'هەنگاوەکانی دامەزراندن لە ئایفۆن';
+  String get esimStepsIphoneTitle => 'هەنگاوەکانی iPhone';
 
   @override
-  String get esimStepIphone1 => 'بچۆ بۆ Settings → Cellular → Add eSIM';
+  String get esimStepIphone1 => 'Settings → Cellular → Add eSIM';
 
   @override
-  String get esimStepIphone2 =>
-      'پاشان Use QR Code، یان Enter Details Manually هەڵبژێرە';
+  String get esimStepIphone2 => 'Use QR Code، یان Enter Details Manually';
 
   @override
-  String get esimStepIphone3 =>
-      'زانیارییەکانی SM-DP+ و Activation Code لەوێ بنووسە';
+  String get esimStepIphone3 => 'SM-DP+ و Activation Code بنووسە';
 
   @override
-  String get esimStepIphone4 =>
-      'کاتێک گەیشتیتە وڵاتی مەبەست، Data Roaming هەڵبکە';
+  String get esimStepIphone4 => 'کاتێک دەگەیتە وڵات، Data Roaming بکەرەوە';
 
   @override
-  String get esimStepsAndroidTitle => 'هەنگاوەکانی دامەزراندن لە ئەندرۆید';
+  String get esimStepsAndroidTitle => 'هەنگاوەکانی Android';
 
   @override
-  String get esimStepAndroid1 => 'بچۆ بۆ Settings → Network & internet → SIMs';
+  String get esimStepAndroid1 => 'Settings → Network & internet → SIMs';
 
   @override
-  String get esimStepAndroid2 => 'پاشان Download a SIM / Add eSIM هەڵبژێرە';
+  String get esimStepAndroid2 => 'Download a SIM / Add eSIM';
 
   @override
-  String get esimStepAndroid3 => 'ئەو QR کۆدەی سەرەوە سکان بکە';
+  String get esimStepAndroid3 => 'کۆدی QRـی سەرەوە سکان بکە';
 
   @override
   String get esimStepAndroid4 =>
-      'دڵنیابە لە هەڵکردنی Mobile data و Roaming بۆ ئەم eSIM-ە';
+      'Mobile data + Roaming بۆ ئەم eSIMـە چالاک بکە';
 
   @override
   String esimApnHint(String apn) {
-    return 'ئەگەر پێویست بوو، ئەوا APN دابنێ بۆ: $apn';
+    return 'ئەگەر پێویست بوو، APN دابنێ بۆ: $apn';
   }
 
   @override
   String get esimRoamingHint =>
-      'دوای دامەزراندن: دڵنیابە لە هەڵکردنی Data Roaming، وە ئەم eSIM-ە نوێیە وەک سەرچاوەی سەرەکی بۆ Mobile Data هەڵبژێرە.';
+      'دوای دامەزراندن: Data Roaming بکەرەوە و ئەم eSIMـە بۆ Mobile Data هەڵبژێرە.';
 
   @override
   String get esimOpenShareLink => 'کردنەوەی پەڕەی دامەزراندن';
 
   @override
   String esimShareCode(String code) {
-    return 'کۆدی چوونەژوورەوە: $code';
+    return 'کۆدی دەستگەیشتن: $code';
   }
 
   @override
-  String get esimOpenLinkFailed => 'کێشەیەک هەیە لە کردنەوەی بەستەرەکە';
+  String get esimOpenLinkFailed => 'نەتوانرا لینکەکە بکرێتەوە';
 
   @override
-  String get orderHistoryTitle => 'مێژووی داواکارییەکان';
+  String get orderHistoryTitle => 'مێژووی داواکاری';
 
   @override
-  String get orderHistoryEmpty => 'تا ئێستا هیچ داواکارییەکت نەکردووە';
+  String get orderHistoryEmpty => 'هێشتا داواکاری نییە';
 
   @override
-  String get orderStatusPending => 'چاوەڕوانی پارەدان';
+  String get orderStatusPending => 'پارەدان ماوە';
 
   @override
-  String get orderStatusPaid => 'لە جێبەجێکردندایە';
+  String get orderStatusPaid => 'پارەدان لە جێبەجێکردن';
 
   @override
-  String get orderStatusProcessing => 'ئامادەکردنی eSIM...';
+  String get orderStatusProcessing => 'ئامادەکردنی eSIM';
 
   @override
-  String get orderStatusCompleted => 'تەواوبوو';
+  String get orderStatusCompleted => 'تەواو بوو';
 
   @override
   String get orderStatusFailed => 'سەرنەکەوت';
 
   @override
-  String get completePayment => 'تەواوکردنی پارەدانەکە';
+  String get completePayment => 'تەواوکردنی پارەدان';
 
   @override
   String get orderAwaitingVerification => 'چاوەڕوانی پشتڕاستکردنەوە';
 
   @override
-  String get termsTitle => 'مەرجەکانی بەکارهێنان';
+  String get termsTitle => 'مەرجەکانی خزمەتگوزاری';
 
   @override
-  String get privacyTitle => 'پاراستنی زانیارییەکان';
+  String get privacyTitle => 'تایبەتمەندی';
 
   @override
-  String get supportTitle => 'پشتگیری و یارمەتی';
+  String get supportTitle => 'یارمەتی و پشتگیری';
 
   @override
-  String get termsOfService => 'مەرجەکانی بەکارهێنان';
+  String get termsOfService => 'مەرجەکانی خزمەتگوزاری';
 
   @override
-  String get privacyPolicy => 'پاراستنی زانیارییەکان';
+  String get privacyPolicy => 'تایبەتمەندی';
 
   @override
-  String get helpSupport => 'پشتگیری و یارمەتی';
+  String get helpSupport => 'یارمەتی و پشتگیری';
 
   @override
-  String get contactEmail => 'ئیمەیڵمان بۆ بنێرە';
+  String get contactEmail => 'ئیمەیڵ بنێرە';
 
   @override
-  String get contactWhatsapp => 'نامە لە واتسئاپەوە';
+  String get contactWhatsapp => 'WhatsApp';
 
   @override
   String get supportContactTitle => 'پەیوەندیمان پێوە بکە';
 
   @override
-  String get supportFaqTitle => 'پرسیارە باوەکان (FAQ)';
+  String get supportFaqTitle => 'پرسیارە باوەکان';
 
   @override
-  String get onboardingSkip => 'تێپەڕاندن';
+  String get onboardingSkip => 'فەوتاندن';
 
   @override
   String get onboardingNext => 'دواتر';
 
   @override
-  String get onboardingGetStarted => 'دەستپێبکە';
+  String get onboardingGetStarted => 'دەست پێ بکە';
 
   @override
-  String get onboardingSlide1Title => 'لە هەر کوێیەک بیت بەستراوە بە';
+  String get onboardingSlide1Title => 'لە هەر شوێنێک بەستراوە بمێنەرەوە';
 
   @override
   String get onboardingSlide1Body =>
-      'پاکێجی ئینتەرنێتی eSIM بۆ زیاتر لە ٢٠٠ وڵات. گەیاندنی دەستبەجێ — بێ پێویستی بە سیمکارتی فیزیکی.';
+      'پلانی داتای eSIM بۆ 200+ وڵات. گەیاندنی خێرا — پێویستی بە SIM فیزیکی نییە.';
 
   @override
-  String get onboardingSlide2Title => 'دامەزراندن لە چەند خولەکێکدا';
+  String get onboardingSlide2Title => 'دامەزراندن لە چەند خولەکدا';
 
   @override
   String get onboardingSlide2Body =>
-      'بۆ ئەندرۆید تەنها QR کۆدێک سکان بکە یان بۆ ئایفۆن بە یەک کلیک دایمەزرێنە. پاکێجەکە تەنها لە کاتی گەیشتن بە وڵاتی مەبەست چالاک دەبێت.';
+      'QR سکان بکە لە Android یان یەک کلیک لە iPhone. پلانەکە کاتێک لە دەرەوە دەبەستێت چالاک دەبێت.';
 
   @override
-  String get onboardingSlide3Title => 'پارەدان بە شێوازی ئاسان';
+  String get onboardingSlide3Title => 'پارەدان بە ئاسایی';
 
   @override
   String get onboardingSlide3Body =>
-      'لە ڕێگەی FIB-ەوە بە دینار پارە بدە یان کارتی بانکی لە ڕێگەی Stripe بەکاربهێنە. دوای پارەدان ڕاستەوخۆ eSIM-ەکەت پێدەگات.';
+      'بە FIB بە دینار یان بە کارت لە Stripe پارە بدە. eSIM لە My eSIMs دەردەکەوێت.';
 
   @override
-  String get offlineTitle => 'هێڵی ئینتەرنێت نییە';
+  String get offlineTitle => 'ئینتەرنێت نییە';
 
   @override
   String get offlineMessage =>
-      'تکایە پەیوەندی ئینتەرنێتەکەت بپشکنە و دووبارە هەوڵبدەرەوە.';
+      'پەیوەندی ئینتەرنێتەکەت پشکنین بکە و دووبارە هەوڵ بدەرەوە.';
 
   @override
   String get sessionExpired =>
-      'کاتی چوونەژوورەوەت بەسەرچووە، تکایە دووبارە بچۆ ژوورەوە.';
+      'کاتی چوونەژوورەوەت تەواو بوو. دووبارە چوونەژوورەوە بکە.';
 
   @override
   String get esimLowDataTitle => 'داتا کەم ماوە';
 
   @override
   String esimLowDataMessage(int percent) {
-    return 'تەنها $percent% لە ئینتەرنێتەکەت ماوە. پێش ئەوەی تەواو بێت دەتوانیت پاکێجێکی تر بکرڕیت.';
+    return 'تەنها $percent% داتا ماوە. پێش تەواوبوون پلانی زیاد بکە.';
   }
 
   @override
-  String get esimExpirySoonTitle => 'پاکێجەکەت بەزوویی بەسەردەچێت';
+  String get esimExpirySoonTitle => 'پلان بەزووی بەسەردەچێت';
 
   @override
   String esimExpirySoonMessage(int days) {
-    return 'پاکێجەکەت لە ماوەی $days ڕۆژی تردا بەسەردەچێت. پێش ئەوەی بەسەر بچێت دەتوانیت نوێی بکەیتەوە.';
+    return 'پلانەکەت لە $days ڕۆژدا بەسەردەچێت. پێش گەشت دووبارە نوێی بکەرەوە.';
   }
 
   @override
@@ -847,10 +845,10 @@ class AppLocalizationsKu extends AppLocalizations {
   String get receiptTitle => 'وەسڵی eSIM KRD';
 
   @override
-  String get promoCodeLabel => 'کۆدی داشکاندن (Promo Code)';
+  String get promoCodeLabel => 'کۆدی پرۆمۆ';
 
   @override
-  String get promoCodeHint => 'کۆدەکە لێرە بنووسە';
+  String get promoCodeHint => 'کۆد بنووسە';
 
   @override
   String get promoApply => 'جێبەجێکردن';
@@ -859,43 +857,43 @@ class AppLocalizationsKu extends AppLocalizations {
   String get promoDiscount => 'داشکاندن';
 
   @override
-  String get topUpTitle => 'زیادکردنی داتا (Top-up)';
+  String get topUpTitle => 'زیادکردنی داتا';
 
   @override
-  String get topUpSubtitle => 'ئەم eSIM-ە نوێ بکەرەوە یان داتای بۆ زیاد بکە.';
+  String get topUpSubtitle => 'ئەم eSIMـە نوێ بکەرەوە یان داتای زیاد بکە.';
 
   @override
   String get topUpAction => 'Top up / نوێکردنەوە';
 
   @override
-  String get referralTitle => 'بانگهێشتکردنی هاوڕێ';
+  String get referralTitle => 'هاوڕێ بنێرە';
 
   @override
   String get referralSubtitle =>
       'کۆدەکەت هاوبەش بکە و هاوڕێیەکانت بانگهێشت بکە.';
 
   @override
-  String get referralShare => 'لینکەکە بڵاوبکەرەوە';
+  String get referralShare => 'هاوبەشکردنی لینک';
 
   @override
   String referralShareMessage(String code) {
-    return 'ئینتەرنێتی باوەڕپێکراو لە هەر کوێیەکی جیهان لەگەڵ eSIM KRD! ئەم کۆدەی من بەکاربهێنە بۆ داشکاندن: $code';
+    return 'eSIM بگەرە لەگەڵ eSIM KRD! کۆدم بەکاربهێنە: $code';
   }
 
   @override
   String referralCount(int count) {
-    return '$count هاوڕێ لە ڕێگەی تۆوە بەشدارییان کردووە';
+    return '$count هاوڕێ بەشداری کرد';
   }
 
   @override
-  String get currencyDisplay => 'پیشاندانی دراوەکان';
+  String get currencyDisplay => 'پیشاندانی دراو';
 
   @override
   String get currencyBoth => 'USD + IQD';
 
   @override
-  String get currencyUsd => 'Only USD';
+  String get currencyUsd => 'تەنها USD';
 
   @override
-  String get currencyIqd => 'Only IQD';
+  String get currencyIqd => 'تەنها IQD';
 }

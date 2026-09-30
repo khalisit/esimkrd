@@ -521,6 +521,22 @@ class _AndroidInstallPanel extends StatelessWidget {
             l10n.esimStepAndroid4,
           ],
         ),
+        if (esim.shareLink != null && esim.shareLink!.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          SecondaryButton(
+            label: l10n.esimOpenShareLink,
+            icon: Icons.open_in_new_rounded,
+            onPressed: onOpenShare,
+          ),
+          if (esim.shareCode != null && esim.shareCode!.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              l10n.esimShareCode(esim.shareCode!),
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.textMuted),
+            ),
+          ],
+        ],
       ],
     );
   }

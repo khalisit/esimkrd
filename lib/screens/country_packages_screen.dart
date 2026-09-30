@@ -85,7 +85,6 @@ class _CountryPackagesScreenState extends State<CountryPackagesScreen> {
     setState(() => _buyingPackageId = package.id);
 
     final localeCode = Localizations.localeOf(context).languageCode;
-    final initialPromo = await DeepLinkService.getPendingPromoCode();
     if (!mounted) {
       setState(() => _buyingPackageId = null);
       return;
@@ -94,8 +93,12 @@ class _CountryPackagesScreenState extends State<CountryPackagesScreen> {
     final paymentMethod = await PaymentMethodSheet.show(
       context,
       package: package,
-      api: widget.api,
-      initialPromoCode: initialPromo,
+      displayCountryCode: widget.country.code,
+      displayCountryName: CountryNames.localized(
+        context,
+        widget.country.code,
+        widget.country.name,
+      ),
     );
     if (!mounted || paymentMethod == null) {
       setState(() => _buyingPackageId = null);
@@ -108,19 +111,20 @@ class _CountryPackagesScreenState extends State<CountryPackagesScreen> {
         countryCode: package.countryCode,
       );
 
+      final pendingPromo = await DeepLinkService.getPendingPromoCode();
       final response = await widget.api.post(
         '/orders',
         body: {
           'package_id': package.id,
           'language': paymentLanguageForLocale(localeCode),
           'payment_method': paymentMethod.paymentMethod,
-          if (paymentMethod.promoCode != null) 'promo_code': paymentMethod.promoCode,
+          'promo_code': ?pendingPromo,
         },
         auth: true,
       );
-      if (paymentMethod.promoCode != null) {
+      if (pendingPromo != null) {
         await DeepLinkService.clearPendingPromoCode();
-        AnalyticsService.logPromoApplied(paymentMethod.promoCode!);
+        AnalyticsService.logPromoApplied(pendingPromo);
       }
       if (!mounted) return;
 

@@ -68,7 +68,6 @@ class UserEsim {
     this.shareLink,
     this.shareCode,
     this.countryName,
-    this.countryCode,
     this.usage,
   });
 
@@ -89,7 +88,6 @@ class UserEsim {
   final String? shareLink;
   final String? shareCode;
   final String? countryName;
-  final String? countryCode;
   final EsimUsage? usage;
 
   bool get hasInstallDetails =>
@@ -123,7 +121,6 @@ class UserEsim {
       shareLink: json['share_link'] as String?,
       shareCode: json['share_code'] as String?,
       countryName: package?['country_name'] as String?,
-      countryCode: package?['country_code'] as String?,
       usage: usageJson != null ? EsimUsage.fromJson(usageJson) : null,
     );
   }

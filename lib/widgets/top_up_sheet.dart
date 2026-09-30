@@ -13,17 +13,18 @@ import '../utils/currency_format.dart';
 import '../utils/page_transitions.dart';
 import '../utils/payment_flow.dart';
 import '../widgets/payment_method_sheet.dart';
+
 class TopUpSheet extends StatefulWidget {
-  const TopUpSheet({
-    super.key,
-    required this.api,
-    required this.esim,
-  });
+  const TopUpSheet({super.key, required this.api, required this.esim});
 
   final ApiClient api;
   final UserEsim esim;
 
-  static Future<void> show(BuildContext context, {required ApiClient api, required UserEsim esim}) {
+  static Future<void> show(
+    BuildContext context, {
+    required ApiClient api,
+    required UserEsim esim,
+  }) {
     return showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -47,33 +48,34 @@ class _TopUpSheetState extends State<TopUpSheet> {
   }
 
   Future<List<EsimPackage>> _loadPackages() async {
-    final response = await widget.api.get('/my-esims/${widget.esim.id}/top-up-packages', auth: true);
+    final response = await widget.api.get(
+      '/my-esims/${widget.esim.id}/top-up-packages',
+      auth: true,
+    );
     final list = response['data'] as List<dynamic>;
-    return list.map((e) => EsimPackage.fromJson(e as Map<String, dynamic>)).toList();
+    return list
+        .map((e) => EsimPackage.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   Future<void> _buy(EsimPackage package) async {
     final l10n = AppLocalizations.of(context)!;
     if (!widget.api.isLoggedIn) {
-      await Navigator.of(context).push<bool>(AppPageRoute(page: LoginScreen(api: widget.api)));
+      await Navigator.of(
+        context,
+      ).push<bool>(AppPageRoute(page: LoginScreen(api: widget.api)));
       if (!mounted || !widget.api.isLoggedIn) return;
     }
 
     setState(() => _buyingId = package.id);
 
     final localeCode = Localizations.localeOf(context).languageCode;
-    final initialPromo = await DeepLinkService.getPendingPromoCode();
     if (!mounted) {
       setState(() => _buyingId = null);
       return;
     }
 
-    final selection = await PaymentMethodSheet.show(
-      context,
-      package: package,
-      api: widget.api,
-      initialPromoCode: initialPromo,
-    );
+    final selection = await PaymentMethodSheet.show(context, package: package);
 
     if (!mounted || selection == null) {
       setState(() => _buyingId = null);
@@ -87,6 +89,7 @@ class _TopUpSheetState extends State<TopUpSheet> {
         isTopUp: true,
       );
 
+      final pendingPromo = await DeepLinkService.getPendingPromoCode();
       final response = await widget.api.post(
         '/orders',
         body: {
@@ -94,24 +97,28 @@ class _TopUpSheetState extends State<TopUpSheet> {
           'user_esim_id': widget.esim.id,
           'language': paymentLanguageForLocale(localeCode),
           'payment_method': selection.paymentMethod,
-          if (selection.promoCode != null) 'promo_code': selection.promoCode,
+          'promo_code': ?pendingPromo,
         },
         auth: true,
       );
 
-      if (selection.promoCode != null) {
+      if (pendingPromo != null) {
         await DeepLinkService.clearPendingPromoCode();
-        AnalyticsService.logPromoApplied(selection.promoCode!);
+        AnalyticsService.logPromoApplied(pendingPromo);
       }
 
       if (!mounted) return;
-      await startCheckoutFlow(context: context, api: widget.api, orderResponse: response);
+      await startCheckoutFlow(
+        context: context,
+        api: widget.api,
+        orderResponse: response,
+      );
       if (mounted) Navigator.of(context).pop();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(formatApiError(l10n, e))),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(formatApiError(l10n, e))));
       }
     } finally {
       if (mounted) setState(() => _buyingId = null);
@@ -136,11 +143,16 @@ class _TopUpSheetState extends State<TopUpSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(l10n.topUpTitle, style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              l10n.topUpTitle,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             const SizedBox(height: 6),
             Text(
               l10n.topUpSubtitle,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 16),
             FutureBuilder<List<EsimPackage>>(
@@ -181,12 +193,15 @@ class _TopUpSheetState extends State<TopUpSheet> {
                         ].join(' · '),
                       ),
                       trailing: loading
-                          ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2))
+                          ? const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
                           : Text(
                               CurrencyFormat.usd(pkg.retailPriceUsd),
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
+                              style: Theme.of(context).textTheme.titleSmall
+                                  ?.copyWith(fontWeight: FontWeight.w700),
                             ),
                       onTap: loading ? null : () => _buy(pkg),
                     );

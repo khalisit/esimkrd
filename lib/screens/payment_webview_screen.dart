@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../l10n/app_localizations.dart';
 import '../theme/app_colors.dart';
 import '../widgets/glow_background.dart';
 
-/// Full-screen Stripe hosted checkout.
+/// In-app Rasedi (or other hosted) checkout — stays inside the Flutter app.
 class PaymentWebViewScreen extends StatefulWidget {
   const PaymentWebViewScreen({
     super.key,
@@ -23,6 +24,9 @@ class PaymentWebViewScreen extends StatefulWidget {
 class _PaymentWebViewScreenState extends State<PaymentWebViewScreen> {
   late final WebViewController _controller;
   var _loading = true;
+  var _finished = false;
+
+  static const _webSchemes = {'http', 'https', 'about', 'data', 'blob', 'file'};
 
   @override
   void initState() {
@@ -31,19 +35,63 @@ class _PaymentWebViewScreenState extends State<PaymentWebViewScreen> {
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setNavigationDelegate(
         NavigationDelegate(
-          onPageStarted: (_) => setState(() => _loading = true),
-          onPageFinished: (_) => setState(() => _loading = false),
+          onPageStarted: (_) {
+            if (mounted) setState(() => _loading = true);
+          },
+          onPageFinished: (_) {
+            if (mounted) setState(() => _loading = false);
+          },
           onNavigationRequest: (request) {
             final url = request.url;
-            if (url.startsWith('esimkrd://payment/')) {
-              Navigator.of(context).pop(true);
+            if (_finishIfReturnUrl(url)) {
               return NavigationDecision.prevent;
             }
+
+            final uri = Uri.tryParse(url);
+            if (uri != null && !_webSchemes.contains(uri.scheme.toLowerCase())) {
+              // FIB / ZainCash / bank apps — open outside WebView, stay in flow.
+              launchUrl(uri, mode: LaunchMode.externalApplication);
+              return NavigationDecision.prevent;
+            }
+
             return NavigationDecision.navigate;
           },
         ),
       )
       ..loadRequest(Uri.parse(widget.paymentUrl));
+  }
+
+  bool _finishIfReturnUrl(String url) {
+    if (_finished) return true;
+
+    if (url.startsWith('esimkrd://payment/cancel')) {
+      _popResult(false);
+      return true;
+    }
+    if (url.startsWith('esimkrd://payment/')) {
+      _popResult(true);
+      return true;
+    }
+
+    final uri = Uri.tryParse(url);
+    if (uri == null) return false;
+
+    final path = uri.path.toLowerCase();
+    if (path.contains('/payment/') && path.contains('cancel')) {
+      _popResult(false);
+      return true;
+    }
+    if (path.contains('/payment/') && path.contains('success')) {
+      _popResult(true);
+      return true;
+    }
+    return false;
+  }
+
+  void _popResult(bool paid) {
+    if (_finished || !mounted) return;
+    _finished = true;
+    Navigator.of(context).pop(paid);
   }
 
   Future<bool> _onWillPop() async {
@@ -146,7 +194,7 @@ class _PaymentWebViewScreenState extends State<PaymentWebViewScreen> {
                   Icon(Icons.verified_user_outlined, size: 16, color: AppColors.textMuted),
                   const SizedBox(width: 6),
                   Text(
-                    l10n.securedByStripe,
+                    l10n.poweredByWayl,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: AppColors.textMuted,
                           fontWeight: FontWeight.w600,

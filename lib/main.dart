@@ -21,7 +21,6 @@ import 'services/deep_link_service.dart';
 import 'services/locale_service.dart';
 import 'services/onboarding_service.dart';
 import 'services/push_notification_service.dart';
-import 'services/notification_service.dart';
 import 'theme/app_colors.dart';
 import 'theme/app_theme.dart';
 import 'widgets/keyboard_dismisser.dart';
@@ -48,12 +47,6 @@ Future<void> main() async {
     }
   } catch (e, stack) {
     debugPrint('Firebase init failed: $e\n$stack');
-  }
-
-  try {
-    await NotificationService().init();
-  } catch (e, stack) {
-    debugPrint('Notification init failed: $e\n$stack');
   }
 
   runApp(const EsimKrdApp());

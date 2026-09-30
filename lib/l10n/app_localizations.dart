@@ -592,6 +592,18 @@ abstract class AppLocalizations {
   /// **'Visa, Mastercard & Apple Pay'**
   String get paymentMethodCardDesc;
 
+  /// No description provided for @paymentMethodRasedi.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay securely'**
+  String get paymentMethodRasedi;
+
+  /// No description provided for @paymentMethodRasediDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'FIB, ZainCash, FastPay, Nass, AsiaPay & card'**
+  String get paymentMethodRasediDesc;
+
   /// No description provided for @paymentBadgePopular.
   ///
   /// In en, this message translates to:
@@ -619,7 +631,7 @@ abstract class AppLocalizations {
   /// No description provided for @securedByStripe.
   ///
   /// In en, this message translates to:
-  /// **'Secured by Stripe'**
+  /// **'Secured payment'**
   String get securedByStripe;
 
   /// No description provided for @copiedToClipboard.
