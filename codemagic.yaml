@@ -103,51 +103,16 @@ workflows:
 
       - name: Build Production IPA
         script: |
-          cat > /tmp/ExportOptions.plist <<'EOF'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-          "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-              <key>method</key>
-              <string>app-store</string>
-
-              <key>signingStyle</key>
-              <string>manual</string>
-
-              <key>teamID</key>
-              <string>KGR3NR587L</string>
-
-              <key>provisioningProfiles</key>
-              <dict>
-                  <key>com.karoxghafoor.esimkrd</key>
-                  <string>Esim KRD - ئی سیم ios_app_store 6811390353</string>
-              </dict>
-
-              <key>stripSwiftSymbols</key>
-              <true/>
-
-              <key>uploadBitcode</key>
-              <false/>
-
-              <key>compileBitcode</key>
-              <false/>
-
-              <key>destination</key>
-              <string>export</string>
-          </dict>
-          </plist>
-          EOF
-
           EXPORT_PLIST=/Users/builder/export_options.plist
+          
           if [ ! -f "$EXPORT_PLIST" ]; then
-            EXPORT_PLIST=/tmp/ExportOptions.plist
+            echo "Error: Codemagic automatic code signing failed to generate export_options.plist"
+            exit 1
           fi
 
           echo "========================================"
           echo "=== EXPORT OPTIONS ($EXPORT_PLIST) ==="
           echo "========================================"
-
           cat "$EXPORT_PLIST"
 
           echo ""
